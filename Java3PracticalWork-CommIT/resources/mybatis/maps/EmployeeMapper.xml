@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.maps.EmployeeMapper" >
+	<resultMap id="employeeResult" type="employee">
+		<id property="id" column="id" />
+		<result property="username" column="username"/>
+		<result property="password" column="password"/>
+		<result property="firstName" column="first_name"/>
+		<result property="lastName" column="last_name"/>
+		<result property="address" column="address"/>
+		<result property="city" column="city"/>
+		<result property="email" column="email"/>
+		<result property="phoneNumber" column="phone_number"/>
+	</resultMap>
+	
+	<select id="selectEmployeeById" resultType="employee" parameterType="int" resultMap="employeeResult">
+	    SELECT 
+	    	*
+	    FROM 
+	    	employee 
+	    WHERE 
+	    	id = #{id}
+	</select>
+	
+	<select id="selectEmployeeByUsername" resultType="employee" parameterType="String" resultMap="employeeResult">
+	    SELECT 
+	    	* 
+	    FROM 
+	    	employee 
+	    WHERE 
+	    	username = #{username}
+	</select>
+	
+	<select id="selectEmployeeLogin" resultType="employee" parameterType="employee" resultMap="employeeResult">
+	    SELECT 
+	    	* 
+	    FROM 
+	    	employee 
+	    WHERE 
+	    	username = #{username} 
+	    AND 
+	    	password = #{password}
+	</select>
+	
+	<insert id="insertEmployee" parameterType="employee"  keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO 
+			employee(username, password, first_name, last_name, address, city, email, phone_number) 
+		VALUES
+			(#{username}, #{password}, #{firstName}, #{lastName}, #{address}, #{city}, #{email}, #{phoneNumber}) 	    
+	</insert>
+	
+	<update id="updateEmployeeById" parameterType="employee" keyProperty="id" useGeneratedKeys="true">
+		UPDATE 
+			employee
+		SET 
+			username = #{username},
+			first_name = #{firstName},
+			last_name = #{lastName},
+			address = #{address},
+			city = #{city},
+			email = #{email},
+			phone_number = #{phoneNumber}
+		WHERE 
+			id =#{id}    
+	</update>
+	
+	<update id="softDeleteEmployeeById" parameterType="employee">
+		UPDATE 
+			employee
+		SET 
+			is_deleted = true
+		WHERE 
+			id =#{id}     	    
+	</update>
+	
+	<delete id="deleteEmployee" parameterType="int">
+		DELETE FROM employee WHERE id =#{id}  	    
+	</delete>
+</mapper>

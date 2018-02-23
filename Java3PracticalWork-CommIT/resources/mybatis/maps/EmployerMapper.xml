@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.maps.EmployerMapper" >
+	<resultMap id="employerResult" type="employer">
+		<id property="id" column="id" />
+		<result property="username" column="username"/>
+		<result property="password" column="password"/>
+		<result property="companyName" column="company_name"/>
+		<result property="contactName" column="contact_name"/>
+		<result property="address" column="address"/>
+		<result property="city" column="city"/>
+		<result property="email" column="email"/>
+		<result property="phoneNumber" column="phone_number"/>
+	</resultMap>
+	
+	<select id="selectEmployerById" resultType="employer" parameterType="int" resultMap="employerResult">
+	    SELECT 
+	    	*
+	    FROM 
+	    	employer 
+	    WHERE 
+	    	id = #{id}
+	</select>
+	
+	<select id="selectEmployerByUsername" resultType="employer" parameterType="String" resultMap="employerResult">
+	    SELECT 
+	    	* 
+	    FROM 
+	    	employer 
+	    WHERE 
+	    	username = #{username}
+	</select>
+	
+	<select id="selectEmployerLogin" resultType="employer" parameterType="String" resultMap="employerResult">
+	    SELECT 
+	    	* 
+	    FROM 
+	    	employer 
+	    WHERE 
+	    	username = #{username} 
+	    AND 
+	    	password = #{password}
+	</select>
+	
+	<insert id="insertEmployer" parameterType="employer"  keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO 
+			employer(username, password, company_name, contact_name, address, city, email, phone_number) 
+		VALUES
+			(#{username}, #{password}, #{companyName}, #{contactName}, #{address}, #{city}, #{email}, #{phoneNumber}) 	    
+	</insert>
+	
+	<update id="updateEmployerById" parameterType="employer" keyProperty="id" useGeneratedKeys="true">
+		UPDATE 
+			employer
+		SET 
+			username = #{username},
+			company_name = #{companyName},
+			contact_name = #{contactName},
+			address = #{address},
+			city = #{city},
+			email = #{email},
+			phone_number = #{phoneNumber}
+		WHERE 
+			id =#{id}    
+	</update>
+	
+	<update id="softDeleteEmployerById" parameterType="employer">
+		UPDATE 
+			employer
+		SET 
+			is_deleted = true
+		WHERE 
+			id =#{id}     	    
+	</update>
+	
+	<delete id="deleteEmployer" parameterType="int">
+		DELETE FROM employer WHERE id =#{id}  	    
+	</delete>
+</mapper>
