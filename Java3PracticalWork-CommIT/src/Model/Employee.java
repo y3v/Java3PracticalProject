@@ -15,6 +15,7 @@ public class Employee {
 	private String lastName;
 	private String address;
 	private String city;
+	private String province;
 	private String email;
 	private String phoneNumber;
 	private String socialMediaUrl;
@@ -62,6 +63,12 @@ public class Employee {
 	}
 	public void setCity(String city) {
 		this.city = city;
+	}
+	public String getProvince() {
+		return province;
+	}
+	public void setProvince(String province) {
+		this.province = province;
 	}
 	public String getEmail() {
 		return email;

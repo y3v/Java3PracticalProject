@@ -9,6 +9,7 @@ public class Employer {
 	private String contactName;
 	private String address;
 	private String city;
+	private String province;
 	private String email;
 	private String phoneNumber;
 	
@@ -53,6 +54,12 @@ public class Employer {
 	}
 	public void setCity(String city) {
 		this.city = city;
+	}
+	public String getProvince() {
+		return province;
+	}
+	public void setProvince(String province) {
+		this.province = province;
 	}
 	public String getEmail() {
 		return email;

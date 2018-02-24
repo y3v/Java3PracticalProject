@@ -11,6 +11,7 @@
 		<result property="contactName" column="contact_name"/>
 		<result property="address" column="address"/>
 		<result property="city" column="city"/>
+		<result property="province" column="province"/>
 		<result property="email" column="email"/>
 		<result property="phoneNumber" column="phone_number"/>
 	</resultMap>
@@ -46,9 +47,9 @@
 	
 	<insert id="insertEmployer" parameterType="employer"  keyProperty="id" useGeneratedKeys="true">
 		INSERT INTO 
-			employer(username, password, company_name, contact_name, address, city, email, phone_number) 
+			employer(username, password, company_name, contact_name, email) 
 		VALUES
-			(#{username}, #{password}, #{companyName}, #{contactName}, #{address}, #{city}, #{email}, #{phoneNumber}) 	    
+			(#{username}, #{password}, #{companyName}, #{contactName}, #{email}) 	    
 	</insert>
 	
 	<update id="updateEmployerById" parameterType="employer" keyProperty="id" useGeneratedKeys="true">
@@ -60,6 +61,7 @@
 			contact_name = #{contactName},
 			address = #{address},
 			city = #{city},
+			province = #{province},
 			email = #{email},
 			phone_number = #{phoneNumber}
 		WHERE 
