@@ -13,6 +13,7 @@
 		<result property="city" column="city"/>
 		<result property="email" column="email"/>
 		<result property="phoneNumber" column="phone_number"/>
+		<result property="socialMediaUrl" column="social_media_url"/>
 	</resultMap>
 	
 	<select id="selectEmployeeById" resultType="employee" parameterType="int" resultMap="employeeResult">
@@ -46,9 +47,9 @@
 	
 	<insert id="insertEmployee" parameterType="employee"  keyProperty="id" useGeneratedKeys="true">
 		INSERT INTO 
-			employee(username, password, first_name, last_name, address, city, email, phone_number) 
+			employee(username, password, first_name, last_name, email) 
 		VALUES
-			(#{username}, #{password}, #{firstName}, #{lastName}, #{address}, #{city}, #{email}, #{phoneNumber}) 	    
+			(#{username}, #{password}, #{firstName}, #{lastName}, #{email}) 	    
 	</insert>
 	
 	<update id="updateEmployeeById" parameterType="employee" keyProperty="id" useGeneratedKeys="true">
@@ -61,7 +62,8 @@
 			address = #{address},
 			city = #{city},
 			email = #{email},
-			phone_number = #{phoneNumber}
+			phone_number = #{phoneNumber},
+			social_media_url = #{socialMediaUrl}
 		WHERE 
 			id =#{id}    
 	</update>

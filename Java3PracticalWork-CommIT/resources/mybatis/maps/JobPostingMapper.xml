@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.maps.JobPostingMapper" >
+	<resultMap id="jobPostingResult" type="jobPosting">
+		<id property="id" column="id" />
+		<result property="employerId" column="employer_id"/>
+		<result property="companyName" column="company_name"/>
+		<result property="jobTitle" column="job_title"/>
+		<result property="jobDescription" column="job_description"/>
+		<result property="yearsOfJobPosting" column="years_of_experience"/>
+		<result property="startDate" column="start_date"/>
+		<result property="endDate" column="end_date"/>
+	</resultMap>
+	
+	<select id="selectJobPosting" resultType="jobPosting" parameterType="int" resultMap="jobPostingResult">
+	    SELECT 
+	    	*
+	    FROM 
+	    	job_posting
+	    WHERE 
+	    	id = #{id}
+	</select>
+	
+	<insert id="insertJobPosting" parameterType="jobPosting"  keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO 
+			job_posting (
+				employer_id, 
+				company_name, 
+				job_title, 
+				job_description,
+				years_of_experience,
+				start_date, 
+				end_date
+			)
+		VALUES
+			(#{employerId}, 
+			#{companyName},
+			#{jobTitle},
+			#{jobDescription},
+			#{yearsOfExperience},
+			#{startDate},
+			#{endDate})
+	</insert>
+	
+	<update id="updateJobPosting" parameterType="jobPosting" keyProperty="id" useGeneratedKeys="true">
+		UPDATE 
+			job_posting
+		SET 
+			company_name = #{companyName},
+			job_title = #{jobTitle},
+			job_description = #{jobDescription},
+			years_of_experience = #{yearsOfExperience},
+			start_date = #{startDate},
+			end_date = #{endDate}
+		WHERE 
+			id = #{id}   
+	</update>
+	
+	<update id="softDeleteJobPosting" parameterType="jobPosting" keyProperty="id" useGeneratedKeys="true">
+		UPDATE 
+			job_posting
+		SET 
+			is_deleted = true
+		WHERE 
+			id = #{id}
+	</update>
+	
+	<delete id="deleteJobPosting" parameterType="int">
+		DELETE FROM job_posting WHERE id = #{id}  	    
+	</delete>
+</mapper>

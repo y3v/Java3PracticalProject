@@ -17,6 +17,9 @@ public class Employee {
 	private String city;
 	private String email;
 	private String phoneNumber;
+	private String socialMediaUrl;
+	private List<Education> educations;
+	private List<Experience> experiences;
 	
 	public int getId() {
 		return id;
@@ -71,6 +74,12 @@ public class Employee {
 	}
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+	public String getSocialMediaUrl() {
+		return socialMediaUrl;
+	}
+	public void setSocialMediaUrl(String socialMediaUrl) {
+		this.socialMediaUrl = socialMediaUrl;
 	}
 
 	
