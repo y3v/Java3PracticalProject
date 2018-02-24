@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets" 
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html" 
+	xmlns:ace="http://www.icefaces.org/icefaces/components" 
+	xmlns:icecore="http://www.icefaces.org/icefaces/core">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+<title>Insert title here</title>
+</h:head>
+
+<h:body>
+
+<h:form id="registration-form">
+	<ace:panel id="registerPanel" header="Registration" >
+                <h:panelGrid id="inputGrid" columns="2" width="100%" styleClass="">
+                
+                    <ace:textEntry id="usernameInput" value="#{register.username}" label="Username" validator="#{register.checkUsernameExists}" labelPosition="left" required="true" requiredMessage="You must enter a username" indicatorPosition="right">
+                        <ace:ajax render="@this usernameMsg" event="blur"/>
+                    </ace:textEntry>
+                    <ace:message id="usernameMsg" for="usernameInput"/>  
+                                  
+                    <ace:textEntry id="passwordInput"  value="#{register.password}" label="Password" validator="#{register.checkPasswordMatch}" labelPosition="left" required="true" requiredMessage="You must enter a password" indicatorPosition="right">
+                        <ace:ajax render="passwordMsg passwordMsg2 passwordInput password2Input" execute="passwordInput password2Input" event="blur"/>
+                    </ace:textEntry>
+                    <ace:message id="passwordMsg" for="passwordInput"/>
+                    
+                    <ace:textEntry id="password2Input" value="#{register.password2}" label="Confirm Password" validator="#{register.checkPasswordMatch}" labelPosition="left" required="true" requiredMessage="Please confirm your password"  indicatorPosition="right">
+                        <ace:ajax render="passwordMsg passwordMsg2 passwordInput password2Input" execute="@all passwordMsg2 password2Input" event="blur"/>
+                    </ace:textEntry>
+                    <ace:message id="passwordMsg2" for="password2Input"/>
+                    
+                    <ace:textEntry id="firstnameInput" value="#{register.firstname}" label="First Name" labelPosition="left" required="true" requiredMessage="Please enter your first name"  indicatorPosition="right">
+                        <ace:ajax render="@this firstnameMsg" event="blur"/>
+                    </ace:textEntry>
+                    <ace:message id="firstnameMsg" for="firstnameInput"/>  
+                    
+                    <ace:textEntry id="lastnameInput" value="#{register.lastname}" label="Last Name" labelPosition="left" required="true" requiredMessage="Please enter your last name"  indicatorPosition="right">
+                        <ace:ajax render="@this lastnameMsg" event="blur"/>
+                    </ace:textEntry>
+                    <ace:message id="lastnameMsg" for="lastnameInput"/>  
+                    
+                    <ace:textEntry id="emailInput" value="#{register.email}" label="E-mail" labelPosition="left" required="true" requiredMessage="Please enter your email"  validator="#{register.validateEmail}" indicatorPosition="right">
+                        <ace:ajax render="@this emailMsg" event="blur"/>
+                    </ace:textEntry>
+                    <ace:message id="emailMsg" for="emailInput" />      
+                </h:panelGrid>
+    </ace:panel>
+    <h:commandButton value="Login" action="#{userBean.validateLogin}"></h:commandButton><br></br><br></br>
+</h:form>
+
+<f:view>
+
+</f:view>
+
+</h:body>
+
+</html>
