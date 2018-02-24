@@ -8,6 +8,11 @@
      <typeAlias type="Model.Employer" alias="employer"/>
      <typeAlias type="Model.Language" alias="language"/>
      <typeAlias type="Model.ProgrammingLanguage" alias="programmingLanguage"/>
+     <typeAlias type="Model.Framework" alias="framework"/>
+     <typeAlias type="Model.Education" alias="education"/>
+     <typeAlias type="Model.Experience" alias="experience"/>
+     <typeAlias type="Model.JobPosting" alias="jobPosting"/>
+     <typeAlias type="Model.JobSearch" alias="jobSearch"/>
   </typeAliases>  
   <environments default="development">
     <environment id="development">
@@ -25,5 +30,10 @@
     <mapper resource="mybatis/maps/EmployerMapper.xml" />
     <mapper resource="mybatis/maps/LanguageMapper.xml" />
     <mapper resource="mybatis/maps/ProgrammingLanguageMapper.xml" />
+    <mapper resource="mybatis/maps/FrameworkMapper.xml" />
+    <mapper resource="mybatis/maps/EducationMapper.xml" />
+    <mapper resource="mybatis/maps/ExperienceMapper.xml" />
+    <mapper resource="mybatis/maps/JobPostingMapper.xml" />
+    <mapper resource="mybatis/maps/JobSearchMapper.xml" />
   </mappers>
 </configuration>

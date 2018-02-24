@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.maps.EducationMapper" >
+	<resultMap id="educationResult" type="education">
+		<id property="id" column="id" />
+		<result property="employeeId" column="employee_id"/>
+		<result property="degreeName" column="degree_name"/>
+		<result property="designation" column="designation"/>
+		<result property="schoolName" column="school_name"/>
+		<result property="startDate" column="start_date"/>
+		<result property="endDate" column="end_date"/>
+	</resultMap>
+	
+	<select id="selectEducation" resultType="education" parameterType="int" resultMap="educationResult">
+	    SELECT 
+	    	*
+	    FROM 
+	    	education 
+	    WHERE 
+	    	id = #{id}
+	</select>
+	
+	<insert id="insertEducation" parameterType="education"  keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO 
+			education (
+				employee_id, 
+				degree_name, 
+				designation, 
+				school_name, 
+				start_date, 
+				end_date
+			)
+		VALUES
+			(#{employeeId}, 
+			#{degreeName},
+			#{designation},
+			#{schoolName},
+			#{startDate},
+			#{endDate})
+	</insert>
+	
+	<update id="updateEducation" parameterType="education" keyProperty="id" useGeneratedKeys="true">
+		UPDATE 
+			education
+		SET 
+			degree_name = #{degreeName},
+			designation = #{designation},
+			school_name = #{schoolName},
+			start_date = #{startDate},
+			end_date = #{endDate}
+		WHERE 
+			id = #{id}   
+	</update>
+	
+	<update id="softDeleteEducation" parameterType="education" keyProperty="id" useGeneratedKeys="true">
+		UPDATE 
+			education
+		SET 
+			is_deleted = true
+		WHERE 
+			id = #{id}   
+	</update>
+	
+	<delete id="deleteEducation" parameterType="int">
+		DELETE FROM education WHERE id = #{id}  	    
+	</delete>
+</mapper>

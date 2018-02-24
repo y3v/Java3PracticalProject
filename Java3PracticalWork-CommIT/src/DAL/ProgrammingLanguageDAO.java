@@ -6,7 +6,7 @@ import DAL.MyBatisUtil;
 
 public class ProgrammingLanguageDAO {
 	
-	public ProgrammingLanguage getByCode(Integer id) {
+	public ProgrammingLanguage getById(Integer id) {
 		  SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();	
 		  ProgrammingLanguage language = session.selectOne("mybatis.maps.ProgrammingLanguageMapper.selectProgrammingLanguage", id);
 		  session.close();

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mybatis.maps.LanguageMapper" >
+<mapper namespace="mybatis.maps.ProgrammingLanguageMapper" >
 	<resultMap id="programmingLanguageResult" type="programmingLanguage">
 		<id property="id" column="id" />
 		<result property="programmingLanguage" column="programming_language"/>
@@ -33,7 +33,7 @@
 			id = #{id}    
 	</update>
 		
-	<delete id="deleteLanguage" parameterType="id">
+	<delete id="deleteProgrammingLanguage" parameterType="id">
 		DELETE FROM programming_language WHERE id = #{id}  	    
 	</delete>
 </mapper>
