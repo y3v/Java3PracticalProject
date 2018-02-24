@@ -1,5 +1,11 @@
 package Model;
 
+import java.util.List;
+import javax.faces.bean.*;
+
+@ManagedBean
+@SessionScoped
+
 public class Employee {
 	
 	private int id;

@@ -2,6 +2,7 @@ package DAL;
 
 import org.apache.ibatis.session.SqlSession;
 import Model.Employee;
+import DAL.MyBatisUtil;
 
 public class EmployeeDAO {
 	
@@ -50,7 +51,7 @@ public class EmployeeDAO {
 	
 	public void hardDelete(Integer id){
 		  SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();	
-		  session.delete("ca.isimtl.mybatis.VillageMapper.deleteEmployee", id);
+		  session.delete("mybatis.maps.EmployeeMapper.deleteEmployee", id);
 		  session.commit();
 		  session.close();
 		}

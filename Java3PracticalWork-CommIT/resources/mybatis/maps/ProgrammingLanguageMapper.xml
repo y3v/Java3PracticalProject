@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.maps.LanguageMapper" >
+	<resultMap id="programmingLanguageResult" type="programmingLanguage">
+		<id property="id" column="id" />
+		<result property="programmingLanguage" column="programming_language"/>
+	</resultMap>
+	
+	<select id="selectProgrammingLanguage" resultType="programmingLanguage" parameterType="int" resultMap="programmingLanguageResult">
+	    SELECT 
+	    	*
+	    FROM 
+	    	programming_language 
+	    WHERE 
+	    	id = #{id}
+	</select>
+	
+	<insert id="insertProgrammingLanguage" parameterType="programmingLanguage"  keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO 
+			programming_language (programming_language)
+		VALUES
+			(#{programmingLanguage})
+	</insert>
+	
+	<update id="updateProgrammingLanguage" parameterType="programmingLanguage" keyProperty="id" useGeneratedKeys="true">
+		UPDATE 
+			programming_language
+		SET 
+			programming_language = #{programmingLanguage}
+		WHERE 
+			id = #{id}    
+	</update>
+		
+	<delete id="deleteLanguage" parameterType="id">
+		DELETE FROM programming_language WHERE id = #{id}  	    
+	</delete>
+</mapper>

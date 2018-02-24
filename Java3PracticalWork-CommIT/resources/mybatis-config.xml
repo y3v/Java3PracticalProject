@@ -6,13 +6,15 @@
   <typeAliases>
      <typeAlias type="Model.Employee" alias="employee"/>
      <typeAlias type="Model.Employer" alias="employer"/>
+     <typeAlias type="Model.Language" alias="language"/>
+     <typeAlias type="Model.ProgrammingLanguage" alias="programmingLanguage"/>
   </typeAliases>  
   <environments default="development">
     <environment id="development">
       <transactionManager type="JDBC"/>
       <dataSource type="POOLED">
         <property name="driver" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/javaiii"/>
         <property name="username" value="yevoli"/>
         <property name="password" value="yevoli123"/>
       </dataSource>
@@ -21,5 +23,7 @@
   <mappers>
     <mapper resource="mybatis/maps/EmployeeMapper.xml" />
     <mapper resource="mybatis/maps/EmployerMapper.xml" />
+    <mapper resource="mybatis/maps/LanguageMapper.xml" />
+    <mapper resource="mybatis/maps/ProgrammingLanguageMapper.xml" />
   </mappers>
 </configuration>

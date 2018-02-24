@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.maps.LanguageMapper" >
+	<resultMap id="languageResult" type="language">
+		<id property="isoCode" column="iso_code" />
+		<result property="languageName" column="language_name"/>
+	</resultMap>
+	
+	<select id="selectLanguage" resultType="language" parameterType="String" resultMap="languageResult">
+	    SELECT 
+	    	*
+	    FROM 
+	    	language 
+	    WHERE 
+	    	iso_code = #{isoCode}
+	</select>
+	
+	<insert id="insertLanguage" parameterType="language"  keyProperty="isoCode" useGeneratedKeys="true">
+		INSERT INTO 
+			language (iso_code, language_name)
+		VALUES
+			(#{isoCode}, #{languageName})
+	</insert>
+	
+	<update id="updateLanguage" parameterType="language" keyProperty="isoCode" useGeneratedKeys="true">
+		UPDATE 
+			language
+		SET 
+			language_name = #{language_name}
+		WHERE 
+			iso_code = #{isoCode}    
+	</update>
+		
+	<delete id="deleteLanguage" parameterType="String">
+		DELETE FROM employee WHERE iso_code = #{isoCode}  	    
+	</delete>
+</mapper>

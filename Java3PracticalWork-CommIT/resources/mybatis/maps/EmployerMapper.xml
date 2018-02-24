@@ -76,6 +76,6 @@
 	</update>
 	
 	<delete id="deleteEmployer" parameterType="int">
-		DELETE FROM employer WHERE id =#{id}  	    
+		DELETE FROM employer WHERE id = #{id}  	    
 	</delete>
 </mapper>

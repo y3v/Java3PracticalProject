@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets" 
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html" 
+	xmlns:ace="http://www.icefaces.org/icefaces/components" 
+	xmlns:icecore="http://www.icefaces.org/icefaces/core">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+<title>Insert title here</title>
+</h:head>
+
+<h:body>
+
+<h:form>
+	username: <h:inputText value="#{dbbean.emp.username}" ></h:inputText><br></br>
+	password: <h:inputText value="#{dbbean.emp.password}" ></h:inputText><br></br>
+	first name: <h:inputText value="#{dbbean.emp.firstName}" ></h:inputText><br></br>
+	last name: <h:inputText value="#{dbbean.emp.lastName}" ></h:inputText><br></br>
+	email: <h:inputText value="#{dbbean.emp.email}" ></h:inputText><br></br>
+	<h:commandButton value="Send to db" action="#{dbbean.rettt}"></h:commandButton><br></br><br></br>
+</h:form>
+
+<f:view>
+
+</f:view>
+
+</h:body>
+
+</html>
