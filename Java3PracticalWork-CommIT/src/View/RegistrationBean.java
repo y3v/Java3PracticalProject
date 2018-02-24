@@ -32,6 +32,12 @@ public class RegistrationBean {
 	        ((UIInput)validate).setValid(false);
 	        FacesMessage msg = new FacesMessage("Username already exists");
 	        context.addMessage(validate.getClientId(context), msg);
+	    } else if (username.length() < 3) {
+	    	if(username.equals("admin")){
+		        ((UIInput)validate).setValid(false);
+		        FacesMessage msg = new FacesMessage("Username must be at least 3 characters long");
+		        context.addMessage(validate.getClientId(context), msg);
+		    }
 	    }
 	}
 	
@@ -46,31 +52,12 @@ public class RegistrationBean {
 	    }
 	}
 	
-	/*public void holdTempPassword(FacesContext context, UIComponent component, Object value) throws ValidatorException{
-		System.out.println("---------START-----------");
-		System.out.println(password);
-		password2 = (String)value;
-		System.out.println(password2);
-		if (!password.equals(password2)) {
-			System.out.println("Should be adding a warning here");
-			context.addMessage("registration-form:password2Input", new FacesMessage("The Passwords do not match"));
-		}
-		else {
-			
-		}
-		password = password2;
-		System.out.println("--------AFTER COMPARING------------");
-		System.out.println(password);
-		System.out.println(password2);
-		System.out.println("--------END------------");
-	}
-	*/
 	public void checkPasswordMatch(FacesContext context, UIComponent component, Object value) throws ValidatorException{
 		System.out.println("---------START-----------");
 		System.out.println(password);
 		password2 = (String)value;
 		System.out.println(password2);
-		if (!password.equals(password2)) {
+		if (!password.equals("") && !password.equals(password2)) {
 			System.out.println("Should be adding a warning here");
 			context.addMessage("registration-form:password2Input", new FacesMessage("The Passwords do not match"));
 		}
