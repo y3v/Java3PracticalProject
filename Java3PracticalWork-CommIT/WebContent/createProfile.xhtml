@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ace="http://www.icefaces.org/icefaces/components"
+	xmlns:icecore="http://www.icefaces.org/icefaces/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Insert title here</title>
+</h:head>
+
+<h:body>
+
+	<h:form id="profile-form">
+		<ace:panel id="profilePanel" header="Create your profile">
+			<h:panelGrid id="profileGrid" columns="1" width="100%" styleClass="">
+
+				<ace:textEntry id="addressInput" value="#{register.username}"
+					label="Address" labelPosition="left" indicatorPosition="right">
+					<ace:ajax render="@this addressMsg" event="blur" />
+				</ace:textEntry>
+				<ace:message id="addressMsg" for="addressInput" />
+
+				<ace:autoCompleteEntry id="autoComplete" value="#{profile.city}"
+					filterMatchMode="" label="City:" labelPosition="left">
+					<f:selectItems value="#{autoCompleteCities.cities}" />
+					<ace:ajax event="valueChange" render="@all" />
+					<ace:ajax event="blur" render="@all" />
+				</ace:autoCompleteEntry>
+				<br></br>
+
+				<h:panelGrid columns="2">
+					<ace:selectMenu id="selectProvince" value="#{profile.province}"
+						label="Select Province: " labelPosition="left">
+						<f:selectItems value="#{options.provinces}" />
+						<ace:ajax execute="@this" render="@all" />
+					</ace:selectMenu>
+					
+					<h:graphicImage value="images/qm.png" alt="help" id="help1" style="width:25px"></h:graphicImage>
+
+
+					<ace:tooltip id="tooltipProvince" for="help1" speechBubble="true"
+						showEffect="slide" hideEffect="slide" showDelay="100"
+						hideDelay="100" position="bottomRight" targetPosition="bottomRight"
+						showEffectLength="500" hideEffectLength="500">
+
+						<h:panelGrid styleClass="tooltipBoxStyle">
+							<h:outputText id="desc0" width="400"
+								value="Please select the province that you currently reside in.&NewLine; You do not have to fill it in right now, but it will help when creating your resume!" />
+						</h:panelGrid>
+					</ace:tooltip>
+				</h:panelGrid>
+				<br></br>
+
+				<ace:maskedEntry id="postaCodeInput" label="Postal Code:"
+					labelPosition="left" value="#{profile.postalCode}" mask="a9a 9a9">
+					<ace:ajax execute="@this" render="postaCodeInput" />
+				</ace:maskedEntry>
+				<br></br>
+
+				<ace:maskedEntry id="phoneInput" label="Phone Number:"
+					labelPosition="left" value="#{profile.postalCode}"
+					mask="(999) 999-9999">
+					<ace:ajax execute="@this" render="phoneInput" />
+				</ace:maskedEntry>
+				<br></br>
+
+			</h:panelGrid>
+		</ace:panel>
+		<h:commandButton value="Login" action="#{register.registerNav}"></h:commandButton>
+		<br></br>
+		<br></br>
+	</h:form>
+
+	<f:view>
+
+	</f:view>
+
+</h:body>
+
+</html>

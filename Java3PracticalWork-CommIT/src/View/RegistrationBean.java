@@ -1,18 +1,18 @@
 package View;
 
-import java.util.List;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 
+import BLL.UserUtils;
+import Model.Employee;
+
 @ManagedBean(name="register")
-@ViewScoped
+@SessionScoped
 
 public class RegistrationBean {
 	
@@ -22,6 +22,7 @@ public class RegistrationBean {
 	private String firstname;
 	private String lastname;
 	private String email;
+	private Employee employee;
 	
 	public void checkUsernameExists(FacesContext context, UIComponent validate, Object value){
 	    String username = (String)value;
@@ -33,11 +34,10 @@ public class RegistrationBean {
 	        FacesMessage msg = new FacesMessage("Username already exists");
 	        context.addMessage(validate.getClientId(context), msg);
 	    } else if (username.length() < 3) {
-	    	if(username.equals("admin")){
-		        ((UIInput)validate).setValid(false);
-		        FacesMessage msg = new FacesMessage("Username must be at least 3 characters long");
-		        context.addMessage(validate.getClientId(context), msg);
-		    }
+	    	System.out.println("username too short!");
+	        ((UIInput)validate).setValid(false);
+	        FacesMessage msg = new FacesMessage("Username must be at least 3 characters long");
+	        context.addMessage(validate.getClientId(context), msg);
 	    }
 	}
 	
@@ -69,6 +69,11 @@ public class RegistrationBean {
 		System.out.println(password);
 		System.out.println(password2);
 		System.out.println("--------END------------");
+	}
+	
+	public String registerNav() {
+		employee = UserUtils.createEmployee(username, password, firstname, lastname, email);
+		return ("next");
 	}
 
 	public String getUsername() {
@@ -118,6 +123,9 @@ public class RegistrationBean {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
+	public Employee getEmployee() {
+		return employee;
+	}
 	
 }
