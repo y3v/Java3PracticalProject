@@ -11,10 +11,10 @@ import javax.faces.validator.ValidatorException;
 import BLL.UserUtils;
 import Model.Employee;
 
-@ManagedBean(name="register")
+@ManagedBean(name="employee")
 @SessionScoped
 
-public class RegistrationBean {
+public class EmployeeBean {
 	
 	private String username;
 	private String password = "";
@@ -22,7 +22,27 @@ public class RegistrationBean {
 	private String firstname;
 	private String lastname;
 	private String email;
+	private String address;
+	private String city;
+	private String province;
+	private String phone;
+	private String postalCode;
 	private Employee employee;
+	
+	public String validateLogin() {
+		employee = UserUtils.createTestUser();
+		String ret;
+		
+		if (employee.getUsername().equals(username) && employee.getPassword().equals(password)) {
+			ret = "next";
+		}
+		else {
+			ret = null;
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.addMessage("login-form:usernameInput", new FacesMessage("Invalid Username or Password"));
+		}
+		return ret;
+	}
 	
 	public void checkUsernameExists(FacesContext context, UIComponent validate, Object value){
 	    String username = (String)value;
@@ -42,6 +62,7 @@ public class RegistrationBean {
 	}
 	
 	public void validateEmail(FacesContext context, UIComponent validate, Object value){
+		//Validation for email regular expression
 	    String email = (String)value;
 	    String pattern = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$";
 
@@ -53,6 +74,7 @@ public class RegistrationBean {
 	}
 	
 	public void checkPasswordMatch(FacesContext context, UIComponent component, Object value) throws ValidatorException{
+		//To check if either of the password fields do not match the other
 		System.out.println("---------START-----------");
 		System.out.println(password);
 		password2 = (String)value;
@@ -60,9 +82,6 @@ public class RegistrationBean {
 		if (!password.equals("") && !password.equals(password2)) {
 			System.out.println("Should be adding a warning here");
 			context.addMessage("registration-form:password2Input", new FacesMessage("The Passwords do not match"));
-		}
-		else {
-			
 		}
 		password = password2;
 		System.out.println("--------AFTER COMPARING------------");
@@ -72,7 +91,20 @@ public class RegistrationBean {
 	}
 	
 	public String registerNav() {
+		//Create initial registration
 		employee = UserUtils.createEmployee(username, password, firstname, lastname, email);
+		System.out.println("Username:" + employee.getUsername());
+		System.out.println("Email:" + employee.getEmail());
+		System.out.println("Password:" + employee.getPassword());
+		System.out.println("Last name:" + employee.getLastName());
+		System.out.println("First Name:" + employee.getFirstName());
+		
+		return ("next");
+	}
+	
+	public String createProfile() {
+		UserUtils.fillProfile(employee, city, province, phone, postalCode, address);
+		
 		return ("next");
 	}
 
@@ -126,6 +158,46 @@ public class RegistrationBean {
 
 	public Employee getEmployee() {
 		return employee;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getProvince() {
+		return province;
+	}
+
+	public void setProvince(String province) {
+		this.province = province;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getPostalCode() {
+		return postalCode;
+	}
+
+	public void setPostalCode(String postalCode) {
+		this.postalCode = postalCode.toUpperCase();
 	}
 	
 }
