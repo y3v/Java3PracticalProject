@@ -17,19 +17,19 @@
 <h:form id="login-form">
 	<ace:panel id="loginPanel" header="Login Info" >
                 <h:panelGrid id="inputGrid" columns="2" width="100%" styleClass="textEntryInputTable">
-                    <ace:textEntry id="usernameInput" value="#{login.username}" label="Username" labelPosition="left" required="true" indicatorPosition="right">
+                    <ace:textEntry id="usernameInput" value="#{employee.username}" label="Username" labelPosition="left" required="true" indicatorPosition="right">
                         <ace:ajax render="@this usernameMsg" event="blur"/>
                     </ace:textEntry>
                     <ace:message id="usernameMsg" for="usernameInput"/>                
-                    <ace:textEntry id="passwordInput" secret="true" value="#{login.password}" label="Password" labelPosition="left" required="true"  indicatorPosition="right">
+                    <ace:textEntry id="passwordInput" secret="true" value="#{employee.password}" label="Password" labelPosition="left" required="true"  indicatorPosition="right">
                         <ace:ajax render="@this passwordMsg" event="blur"/>
                     </ace:textEntry>
                     <ace:message id="passwordMsg" for="passwordInput"/>    
                 </h:panelGrid>
     </ace:panel>
-    <h:commandButton value="Login" action="#{login.validateLogin}"></h:commandButton><br></br><br></br>
+    <h:commandButton value="Login" action="#{employee.validateLogin}"></h:commandButton><br></br><br></br>
 </h:form>
-<h:link value="Don't have an account yet? Click here to register" outcome="register.xhtml"></h:link>
+<h:link value="Don't have an account yet? Click here to register" outcome="registration.xhtml"></h:link>
 
 <f:view>
 

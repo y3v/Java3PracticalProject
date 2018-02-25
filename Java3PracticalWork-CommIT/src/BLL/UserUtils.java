@@ -6,8 +6,8 @@ import Model.User;
 public class UserUtils {
 	
 	
-	public User createTestUser() {
-		User temp = new User();
+	public static Employee createTestUser() {
+		Employee temp = new Employee();
 		
 		temp.setPassword("admin");
 		temp.setUsername("admin");
@@ -25,5 +25,23 @@ public class UserUtils {
 		emp.setEmail(email);
 		
 		return emp;
+	}
+	
+	public static void fillProfile(Employee employee, String city, String province, String phone, String postalCode, String address){
+		if (city != null) {
+			employee.setCity(city);
+		}
+		if (province != null) {
+			employee.setProvince(province);
+		}
+		if (phone != null) {
+			employee.setPhoneNumber(phone);
+		}
+		if (postalCode != null) {
+			employee.setPostalCode(postalCode);
+		}
+		if (address != null) {
+			employee.setAddress(address);
+		}
 	}
 }	

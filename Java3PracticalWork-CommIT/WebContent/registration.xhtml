@@ -18,38 +18,38 @@
 	<ace:panel id="registerPanel" header="Registration" >
                 <h:panelGrid id="inputGrid" columns="2" width="100%" styleClass="">
                 
-                    <ace:textEntry id="usernameInput" value="#{register.username}" label="Username" validator="#{register.checkUsernameExists}" labelPosition="left" required="true" requiredMessage="You must enter a username" indicatorPosition="right">
+                    <ace:textEntry id="usernameInput" value="#{employee.username}" label="Username" validator="#{employee.checkUsernameExists}" labelPosition="left" required="true" requiredMessage="You must enter a username" indicatorPosition="right">
                         <ace:ajax render="@this usernameMsg" event="blur"/>
                     </ace:textEntry>
                     <ace:message id="usernameMsg" for="usernameInput"/>  
                                   
-                    <ace:textEntry id="passwordInput"  value="#{register.password}" label="Password" validator="#{register.checkPasswordMatch}" labelPosition="left" required="true" requiredMessage="You must enter a password" indicatorPosition="right">
+                    <ace:textEntry id="passwordInput"  value="#{employee.password}" label="Password" validator="#{employee.checkPasswordMatch}" labelPosition="left" required="true" requiredMessage="You must enter a password" indicatorPosition="right">
                         <ace:ajax render="passwordMsg passwordMsg2 passwordInput password2Input" execute="passwordInput password2Input" event="blur"/>
                     </ace:textEntry>
                     <ace:message id="passwordMsg" for="passwordInput"/>
                     
-                    <ace:textEntry id="password2Input" value="#{register.password2}" label="Confirm Password" validator="#{register.checkPasswordMatch}" labelPosition="left" required="true" requiredMessage="Please confirm your password"  indicatorPosition="right">
+                    <ace:textEntry id="password2Input" value="#{employee.password2}" label="Confirm Password" validator="#{employee.checkPasswordMatch}" labelPosition="left" required="true" requiredMessage="Please confirm your password"  indicatorPosition="right">
                         <ace:ajax render="passwordMsg passwordMsg2 passwordInput password2Input" execute="@all passwordMsg2 password2Input" event="blur"/>
                     </ace:textEntry>
                     <ace:message id="passwordMsg2" for="password2Input"/>
                     
-                    <ace:textEntry id="firstnameInput" value="#{register.firstname}" label="First Name" labelPosition="left" required="true" requiredMessage="Please enter your first name"  indicatorPosition="right">
+                    <ace:textEntry id="firstnameInput" value="#{employee.firstname}" label="First Name" labelPosition="left" required="true" requiredMessage="Please enter your first name"  indicatorPosition="right">
                         <ace:ajax render="@this firstnameMsg" event="blur"/>
                     </ace:textEntry>
                     <ace:message id="firstnameMsg" for="firstnameInput"/>  
                     
-                    <ace:textEntry id="lastnameInput" value="#{register.lastname}" label="Last Name" labelPosition="left" required="true" requiredMessage="Please enter your last name"  indicatorPosition="right">
+                    <ace:textEntry id="lastnameInput" value="#{employee.lastname}" label="Last Name" labelPosition="left" required="true" requiredMessage="Please enter your last name"  indicatorPosition="right">
                         <ace:ajax render="@this lastnameMsg" event="blur"/>
                     </ace:textEntry>
                     <ace:message id="lastnameMsg" for="lastnameInput"/>  
                     
-                    <ace:textEntry id="emailInput" value="#{register.email}" label="E-mail" labelPosition="left" required="true" requiredMessage="Please enter your email"  validator="#{register.validateEmail}" indicatorPosition="right">
+                    <ace:textEntry id="emailInput" value="#{employee.email}" label="E-mail" labelPosition="left" required="true" requiredMessage="Please enter your email"  validator="#{employee.validateEmail}" indicatorPosition="right">
                         <ace:ajax render="@this emailMsg" event="blur"/>
                     </ace:textEntry>
                     <ace:message id="emailMsg" for="emailInput" />      
                 </h:panelGrid>
     </ace:panel>
-    <h:commandButton value="Login" action="#{register.registerNav}"></h:commandButton><br></br><br></br>
+    <h:commandButton value="Register" action="#{employee.registerNav}"></h:commandButton><br></br><br></br>
 </h:form>
 
 <f:view>

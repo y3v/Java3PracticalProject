@@ -17,32 +17,58 @@
 	<h:form id="profile-form">
 		<ace:panel id="profilePanel" header="Create your profile">
 			<h:panelGrid id="profileGrid" columns="1" width="100%" styleClass="">
+			
+				<h:panelGrid columns="2">
+					<ace:textEntry id="addressInput" value="#{employee.address}"
+						label="Address" labelPosition="left" indicatorPosition="right">
+						<ace:ajax render="@this addressMsg" event="blur" />
+					</ace:textEntry>
+					<ace:message id="addressMsg" for="addressInput" />
+					
+					<h:graphicImage value="images/qm.png" alt="help" id="help5" style="width:25px"></h:graphicImage>
+					<ace:tooltip id="tooltipAddress" for="help5" speechBubble="false"
+						showEffect="slide" hideEffect="slide" showDelay="100"
+						hideDelay="100" position="bottomRight" targetPosition="bottomRight"
+						showEffectLength="500" hideEffectLength="500">
 
-				<ace:textEntry id="addressInput" value="#{register.username}"
-					label="Address" labelPosition="left" indicatorPosition="right">
-					<ace:ajax render="@this addressMsg" event="blur" />
-				</ace:textEntry>
-				<ace:message id="addressMsg" for="addressInput" />
+						<h:panelGrid styleClass="tooltipBoxStyle">
+							<h:outputText id="desc4" width="400"
+								value="Enter Address here including suite/apartment number." />
+						</h:panelGrid>
+					</ace:tooltip>
+				</h:panelGrid>
 
-				<ace:autoCompleteEntry id="autoComplete" value="#{profile.city}"
-					filterMatchMode="" label="City:" labelPosition="left">
-					<f:selectItems value="#{autoCompleteCities.cities}" />
-					<ace:ajax event="valueChange" render="@all" />
-					<ace:ajax event="blur" render="@all" />
-				</ace:autoCompleteEntry>
+				<h:panelGrid columns="2">
+					<ace:autoCompleteEntry id="autoComplete" value="#{employee.city}"
+						filterMatchMode="" label="City:" labelPosition="left">
+						<f:selectItems value="#{autoCompleteCities.cities}" />
+						<ace:ajax event="valueChange" render="@all" />
+						<ace:ajax event="blur" render="@all" />
+					</ace:autoCompleteEntry>
+					
+					<h:graphicImage value="images/qm.png" alt="help" id="help4" style="width:25px"></h:graphicImage>
+					<ace:tooltip id="tooltipCity" for="help4" speechBubble="false"
+						showEffect="slide" hideEffect="slide" showDelay="100"
+						hideDelay="100" position="bottomRight" targetPosition="bottomRight"
+						showEffectLength="500" hideEffectLength="500">
+
+						<h:panelGrid styleClass="tooltipBoxStyle">
+							<h:outputText id="desc3" width="400"
+								value="You may choose a city from the suggested list, or enter your own" />
+						</h:panelGrid>
+					</ace:tooltip>
+				</h:panelGrid>
 				<br></br>
 
 				<h:panelGrid columns="2">
-					<ace:selectMenu id="selectProvince" value="#{profile.province}"
+					<ace:selectMenu id="selectProvince" value="#{employee.province}"
 						label="Select Province: " labelPosition="left">
 						<f:selectItems value="#{options.provinces}" />
 						<ace:ajax execute="@this" render="@all" />
 					</ace:selectMenu>
 					
 					<h:graphicImage value="images/qm.png" alt="help" id="help1" style="width:25px"></h:graphicImage>
-
-
-					<ace:tooltip id="tooltipProvince" for="help1" speechBubble="true"
+					<ace:tooltip id="tooltipProvince" for="help1" speechBubble="false"
 						showEffect="slide" hideEffect="slide" showDelay="100"
 						hideDelay="100" position="bottomRight" targetPosition="bottomRight"
 						showEffectLength="500" hideEffectLength="500">
@@ -55,22 +81,48 @@
 				</h:panelGrid>
 				<br></br>
 
-				<ace:maskedEntry id="postaCodeInput" label="Postal Code:"
-					labelPosition="left" value="#{profile.postalCode}" mask="a9a 9a9">
-					<ace:ajax execute="@this" render="postaCodeInput" />
-				</ace:maskedEntry>
+				<h:panelGrid columns="2">
+					<ace:maskedEntry id="postalCodeInput" label="Postal Code:"
+						labelPosition="left" value="#{employee.postalCode}"
+						mask="a9a 9a9">
+						<ace:ajax execute="@this" render="postalCodeInput" />
+					</ace:maskedEntry>
+					<h:graphicImage value="images/qm.png" alt="help" id="help2" style="width:25px"></h:graphicImage>
+					<ace:tooltip id="tooltipPostalCode" for="help2" speechBubble="false"
+						showEffect="slide" hideEffect="slide" showDelay="100"
+						hideDelay="100" position="bottomRight" targetPosition="bottomRight"
+						showEffectLength="500" hideEffectLength="500">
+
+						<h:panelGrid styleClass="tooltipBoxStyle">
+							<h:outputText id="desc1" width="400"
+								value="Your Postal Code should be in the standard Canadian format. Ex: M2R 1Z9" />
+						</h:panelGrid>
+					</ace:tooltip>
+				</h:panelGrid>
 				<br></br>
 
-				<ace:maskedEntry id="phoneInput" label="Phone Number:"
-					labelPosition="left" value="#{profile.postalCode}"
-					mask="(999) 999-9999">
-					<ace:ajax execute="@this" render="phoneInput" />
-				</ace:maskedEntry>
-				<br></br>
-
+				<h:panelGrid columns="2">
+					<ace:maskedEntry id="phoneInput" label="Phone Number:"
+						labelPosition="left" value="#{employee.phone}"
+						mask="(999) 999-9999">
+						<ace:ajax execute="@this" render="phoneInput" />
+					</ace:maskedEntry>
+					
+					<h:graphicImage value="images/qm.png" alt="help" id="help3" style="width:25px"></h:graphicImage>
+					<ace:tooltip id="tooltipPhone" for="help3" speechBubble="false"
+						showEffect="slide" hideEffect="slide" showDelay="100"
+						hideDelay="100" position="bottomRight" targetPosition="bottomRight"
+						showEffectLength="500" hideEffectLength="500">
+	
+						<h:panelGrid styleClass="tooltipBoxStyle">
+							<h:outputText id="desc2" width="400"
+								value="You need only to enter the numbers. The formating will be taken care of. Ex. (416)650-1684" />
+						</h:panelGrid>
+					</ace:tooltip>
+				</h:panelGrid>
 			</h:panelGrid>
 		</ace:panel>
-		<h:commandButton value="Login" action="#{register.registerNav}"></h:commandButton>
+		<h:commandButton value="Login" action="showEmployeeDetails.xhtml}"></h:commandButton>
 		<br></br>
 		<br></br>
 	</h:form>
