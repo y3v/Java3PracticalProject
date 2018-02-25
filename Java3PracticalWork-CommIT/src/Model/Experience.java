@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.Date;
+import java.util.List;
 
 public class Experience {
 	private int id;
@@ -10,6 +11,9 @@ public class Experience {
 	private String description;
 	private Date startDate;
 	private Date endDate;
+	private List<Field> fields;
+	private List<ProgrammingLanguage> programmingLanguages;
+	private List<Language> languages;
 	
 	public int getId() {
 		return id;
@@ -52,6 +56,24 @@ public class Experience {
 	}
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
+	}
+	public List<Field> getFields() {
+		return fields;
+	}
+	public void setFields(List<Field> fields) {
+		this.fields = fields;
+	}
+	public List<ProgrammingLanguage> getProgrammingLanguages() {
+		return programmingLanguages;
+	}
+	public void setProgrammingLanguages(List<ProgrammingLanguage> programmingLanguages) {
+		this.programmingLanguages = programmingLanguages;
+	}
+	public List<Language> getLanguages() {
+		return languages;
+	}
+	public void setLanguages(List<Language> languages) {
+		this.languages = languages;
 	}
 	
 	

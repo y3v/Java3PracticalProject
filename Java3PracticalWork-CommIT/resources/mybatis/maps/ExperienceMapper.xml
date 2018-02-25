@@ -11,6 +11,9 @@
 		<result property="description" column="description"/>
 		<result property="startDate" column="start_date"/>
 		<result property="endDate" column="end_date"/>
+		<collection property="fields" column="id" ofType="Model.Field" select="selectFields" />
+		<collection property="programmingLanguages" column="id" ofType="Model.ProgrammingLanguage" select="selectProgrammingLanguages" />
+		<collection property="languages" column="id" ofType="Model.Language" select="selectLanguages" />
 	</resultMap>
 	
 	<select id="selectExperience" resultType="experience" parameterType="int" resultMap="experienceResult">
@@ -20,6 +23,15 @@
 	    	experience 
 	    WHERE 
 	    	id = #{id}
+	</select>
+	
+	<select id="selectAllExperiencesForEmployee" resultType="experience" parameterType="int" resultMap="experienceResult">
+	    SELECT 
+	    	*
+	    FROM 
+	    	experience 
+	    WHERE 
+	    	employee_id = #{empId}
 	</select>
 	
 	<insert id="insertExperience" parameterType="experience"  keyProperty="id" useGeneratedKeys="true">
@@ -66,4 +78,57 @@
 	<delete id="deleteExperience" parameterType="int">
 		DELETE FROM experience WHERE id = #{id}  	    
 	</delete>
+	
+	<!-- COLLECTION SELECT -->
+	
+	<select id="selectFields" resultType="Field">
+		SELECT 
+			f.id, field
+	    FROM 
+	    	field f
+	    JOIN 
+	    	experience_field exf 
+	    	ON 
+	    		exf.field_id = f.id
+	    JOIN 
+	    	experience ex 
+	    	ON 
+	    		ex.id = exf.experience_id 
+	    	AND 
+	    		ex.id = #{id};
+	</select>
+	
+	<select id="selectProgrammingLanguages" resultType="ProgrammingLanguage">
+		SELECT 
+			plang.id, programming_language
+	    FROM 
+	    	programming_language plang
+	    JOIN 
+	    	experience_programming_language explang 
+	    	ON 
+	    		explang.programming_language_id = plang.id
+	    JOIN 
+	    	experience ex 
+	    	ON 
+	    		ex.id = explang.experience_id 
+	    	AND 
+	    		ex.id = #{id};
+	</select>
+	
+	<select id="selectLanguages" resultType="Language">
+		SELECT 
+			iso_code, language_name
+    	FROM 
+    		language lang
+    	JOIN 
+    		experience_language exlang 
+    		ON 
+    			exlang.language_code = lang.iso_code
+    	JOIN 
+    		experience ex 
+    		ON 
+    			ex.id = exlang.experience_id 
+    		AND 
+    			ex.id = #{id};
+	</select>
 </mapper>

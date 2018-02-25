@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.maps.FieldMapper" >
+	<resultMap id="fieldResult" type="field">
+		<id property="id" column="id" />
+		<result property="field" column="field"/>
+	</resultMap>
+	
+	<select id="selectField" resultType="field" parameterType="String" resultMap="fieldResult">
+	    SELECT 
+	    	*
+	    FROM 
+	    	field 
+	    WHERE 
+	    	id = #{id}
+	</select>
+	
+	<insert id="insertField" parameterType="field"  keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO 
+			field (field)
+		VALUES
+			(#{field})
+	</insert>
+	
+	<update id="updateField" parameterType="field" keyProperty="id" useGeneratedKeys="true">
+		UPDATE 
+			field
+		SET 
+			field = #{field}
+		WHERE 
+			id = #{id}    
+	</update>
+		
+	<delete id="deleteField" parameterType="String">
+		DELETE FROM employee WHERE id = #{id}  	    
+	</delete>
+</mapper>

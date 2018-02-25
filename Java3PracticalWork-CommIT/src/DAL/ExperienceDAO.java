@@ -1,5 +1,7 @@
 package DAL;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import Model.Experience;
 import DAL.MyBatisUtil;
@@ -11,6 +13,13 @@ public class ExperienceDAO {
 		  Experience experience = session.selectOne("mybatis.maps.ExperienceMapper.selectExperience", id);
 		  session.close();
 		  return experience;
+	}
+	
+	public List<Experience> getAllExperiencesForEmployeeId(Integer empId) {
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();	
+		List<Experience> experiences = session.selectList("mybatis.maps.ExperienceMapper.selectAllExperiencesForEmployee", empId);
+		session.close();
+		return experiences;
 	}
 		
 	public void insert(Experience experience){

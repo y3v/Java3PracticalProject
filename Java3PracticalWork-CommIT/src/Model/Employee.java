@@ -16,11 +16,10 @@ public class Employee {
 	private String address;
 	private String city;
 	private String province;
+	private String postalCode;
 	private String email;
 	private String phoneNumber;
 	private String socialMediaUrl;
-	private List<Education> educations;
-	private List<Experience> experiences;
 	
 	public int getId() {
 		return id;
@@ -69,6 +68,12 @@ public class Employee {
 	}
 	public void setProvince(String province) {
 		this.province = province;
+	}
+	public String getPostalCode() {
+		return postalCode;
+	}
+	public void setPostalCode(String postalCode) {
+		this.postalCode = postalCode;
 	}
 	public String getEmail() {
 		return email;
