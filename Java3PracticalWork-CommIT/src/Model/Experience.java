@@ -9,6 +9,7 @@ public class Experience {
 	private String company;
 	private String title;
 	private String description;
+	private String location;
 	private Date startDate;
 	private Date endDate;
 	private List<Field> fields;
@@ -75,6 +76,10 @@ public class Experience {
 	public void setLanguages(List<Language> languages) {
 		this.languages = languages;
 	}
-	
-	
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
+	}
 }

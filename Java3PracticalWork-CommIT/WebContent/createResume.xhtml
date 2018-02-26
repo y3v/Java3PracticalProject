@@ -3,114 +3,244 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:ace="http://www.icefaces.org/icefaces/components">
 <h:head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
-<title>Insert title here</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Insert title here</title>
+	<style type="text/css">
+.iblock {
+	display: inline-block;
+	border: 1px solid black;
+	margin: 1em;
+	border-radius:5px;
+	background-color:#ddd;
+}
+
+.outPane {
+	display: inline-block;
+	border: 1px solid black;
+	width: 80%;
+	min-height: 9em;
+	margin-left: 1em;
+}
+</style>
 </h:head>
 
 <h:body>
 
-<h:form>
-	<h:form id="resume-form">
-		<ace:dataTable id="carTable"
-	                         value="#{resume.education}"
-	                         var="edu"
-	                         paginator="true"
-	                         paginatorPosition="bottom"
-	                         rows="10">
-	               <ace:column id="typeCell" headerText="Degree Type" sortBy="#{edu.designation}"
-	                           filterBy="#{edu.designation}" filterMatchMode="contains">
-	                   <h:outputText id="typeCellname" value="#{edu.designation}"/>
-	               </ace:column>
-	               <ace:column id="nameCell" headerText="Degree Name" sortBy="#{edu.degreeName}"
-	                           filterBy="#{edu.degreeName}" filterMatchMode="contains">
-	                   <h:outputText id="nameCellname" value="#{edu.degreeName}"/>
-	               </ace:column>
-	               <ace:column id="schoolNameCell" headerText="School Name" sortBy="#{edu.schoolName}"
-	                           filterBy="#{edu.schoolName}" filterMatchMode="contains">
-	                   <h:outputText id="schoolCell" value="#{edu.schoolName}"/>
-	               </ace:column>
-	               <ace:column id="startDateCell" headerText="Start Date" sortBy="#{edu.startDate}"
-	                           filterBy="#{edu.startDate}" filterMatchMode="contains">
-	                   <h:outputText id="startDateText" value="#{edu.startDate}"/>
-	               </ace:column>
-	               <ace:column id="endDateCell" headerText="End Date" sortBy="#{edu.endDate}"
-	                           filterBy="#{edu.endDate}" filterMatchMode="contains">
-	                   <h:outputText id="endDateText" value="#{edu.endDate}"/>
-	               </ace:column>
-	    </ace:dataTable>
-		
-		<ace:panel id="resumePanel" header="Add Education">
-			<h:panelGrid id="resumeGrid" columns="2" width="100%" styleClass="">
-			
-				<h:panelGrid>
-					<ace:autoCompleteEntry id="autoCompleteEdu" value="#{resume.designation}"
-						filterMatchMode="contains" label="Degree Type:" labelPosition="left"
-						required="true" requiredMessage="Please Enter your Degree/Diploma Type">
-						<f:selectItems value="#{autoCompleteEdu.edu}" />
-						<ace:ajax event="valueChange" render="@all" />
-						<ace:ajax event="blur" render="@all" />
-					</ace:autoCompleteEntry>
-				</h:panelGrid>
-				<h:message for="autoCompleteEdu" id="eduMsg"></h:message>
-	
-				<h:panelGrid>
-					<ace:textEntry id="eduNameInput" value="#{resume.degreeName}"
-						label="Degree Name:" labelPosition="left" indicatorPosition="right"
-						required="true" requiredMessage="Please Enter your Degree/Diploma Name">
-						<ace:ajax render="@this degMsg" event="blur" />
-					</ace:textEntry>
-				</h:panelGrid>
-				<h:message for="eduNameInput" id="eduNameMsg"></h:message>
-				
-				<h:panelGrid>
-					<ace:autoCompleteEntry id="autoCompleteSchool" value="#{resume.schoolName}"
-						filterMatchMode="contains" label="School Name:" labelPosition="left"
-						required="true" requiredMessage="Please Enter your School Name">
-						<f:selectItems value="#{autoCompleteSchools.schools}" />
-						<ace:ajax event="valueChange" render="@all" />
-						<ace:ajax event="blur" render="@all" />
-					</ace:autoCompleteEntry>
-				</h:panelGrid>
-				<h:message for="autoCompleteSchool" id="schoolMsg"></h:message>
-				
-				<h:panelGrid>
-					<ace:dateTimeEntry id="calStart"
-								   label="Enter Start Date:"
-								   labelPosition="left"
-                                   value="#{resume.startDate}"
-                                   pattern="MM/dd/yyyy"
-                                   renderAsPopup="true"
-                                   required="true"
-                                   requiredMessage="Please Enter the start date!"/>
-				</h:panelGrid>
-				<h:message for="calStart" id="startMsg"></h:message>
-				
-				<h:panelGrid>
-					<ace:dateTimeEntry id="calEnd"
-								   label="Enter End Date:"
-								   labelPosition="left"
-                                   value="#{resume.endDate}"
-                                   pattern="MM/dd/yyyy"
-                                   renderAsPopup="true"
-                                   required="true"
-                                   requiredMessage="Please Enter the end date!"/>
+	<h:form>
+		<h1>Create your Resume</h1>
+		<h:form id="resume-form">
+			<ace:dataTable id="eduTable"
+				rendered="#{!resume.lists.education.isEmpty()}"
+				value="#{lists.education}" var="edu" paginator="true"
+				paginatorPosition="bottom" rows="10">
+				<ace:column id="typeCell" headerText="Degree Type">
+					<h:outputText id="typeCellname" value="#{edu.designation}" />
+				</ace:column>
+				<ace:column id="nameCell" headerText="Degree Name">
+					<h:outputText id="nameCellname" value="#{edu.degreeName}" />
+				</ace:column>
+				<ace:column id="schoolNameCell" headerText="School Name">
+					<h:outputText id="schoolCell" value="#{edu.schoolName}" />
+				</ace:column>
+				<ace:column id="startDateCell" headerText="Start Date">
+					<h:outputText id="startDateText" value="#{edu.startDate}" />
+				</ace:column>
+				<ace:column id="endDateCell" headerText="End Date">
+					<h:outputText id="endDateText" value="#{edu.endDate}" />
+				</ace:column>
+			</ace:dataTable>
+
+			<ace:panel id="resumePanel" header="Add Education">
+				<h:panelGrid id="resumeGrid" columns="2" width="100%" styleClass="">
+
+					<h:panelGrid>
+						<ace:autoCompleteEntry id="autoCompleteEdu"
+							value="#{resume.designation}" filterMatchMode="contains"
+							label="Degree Type:" labelPosition="left" required="true"
+							requiredMessage="Please Enter your Degree/Diploma Type">
+							<f:selectItems value="#{autoCompleteEdu.edu}" />
+							<ace:ajax event="valueChange" render="@this" />
+							<ace:ajax event="blur" render="@this" />
+						</ace:autoCompleteEntry>
+					</h:panelGrid>
+					<h:message for="autoCompleteEdu" id="eduMsg"></h:message>
+
+					<h:panelGrid>
+						<ace:textEntry id="eduNameInput" value="#{resume.degreeName}"
+							label="Degree Name:" labelPosition="left"
+							indicatorPosition="right" required="true"
+							requiredMessage="Please Enter your Degree/Diploma Name">
+							<ace:ajax render="@this degMsg" event="blur" />
+						</ace:textEntry>
+					</h:panelGrid>
+					<h:message for="eduNameInput" id="eduNameMsg"></h:message>
+
+					<h:panelGrid>
+						<ace:autoCompleteEntry id="autoCompleteSchool"
+							value="#{resume.schoolName}" filterMatchMode="contains"
+							label="School Name:" labelPosition="left" required="true"
+							requiredMessage="Please Enter your School Name">
+							<f:selectItems value="#{autoCompleteSchools.schools}" />
+							<ace:ajax event="valueChange" render="@this" />
+							<ace:ajax event="blur" render="@this" />
+						</ace:autoCompleteEntry>
+					</h:panelGrid>
+					<h:message for="autoCompleteSchool" id="schoolMsg"></h:message>
+
+					<h:panelGrid>
+						<ace:dateTimeEntry id="calStart" label="Enter Start Date:"
+							labelPosition="left" value="#{resume.startDate}"
+							pattern="MM/dd/yyyy" renderAsPopup="true" required="true"
+							requiredMessage="Please Enter the start date!" />
+					</h:panelGrid>
+					<h:message for="calStart" id="startMsg"></h:message>
+
+					<h:panelGrid>
+						<ace:dateTimeEntry id="calEnd" label="Enter End Date:"
+							labelPosition="left" value="#{resume.endDate}"
+							pattern="MM/dd/yyyy" renderAsPopup="true" required="true"
+							requiredMessage="Please Enter the end date!" />
+
+					</h:panelGrid>
+					<h:message for="calEnd" id="endMsg"></h:message>
 
 				</h:panelGrid>
-				<h:message for="calEnd" id="endMsg"></h:message>
-				
+			</ace:panel>
+			<h:commandButton value="Add" action="#{resume.addEducation}"></h:commandButton>
+			<br></br>
+			<br></br>
+		</h:form>
+	</h:form>
+
+
+	<h:form id="resume-form2">
+		<ace:dataTable id="expTable"
+			rendered="#{!resume.lists.experience.isEmpty()}"
+			value="#{lists.experience}" var="exp" paginator="true"
+			paginatorPosition="bottom" rows="10">
+			<ace:column id="companyCell" headerText="Company">
+				<h:outputText id="companyCellname" value="#{exp.company}" />
+			</ace:column>
+			<ace:column id="nameCell" headerText="Title">
+				<h:outputText id="titleCellname" value="#{exp.title}" />
+			</ace:column>
+			<ace:column id="locationNameCell" headerText="Location">
+				<h:outputText id="locationCell" value="#{exp.location}" />
+			</ace:column>
+			<ace:column id="startDateCellExp" headerText="Start Date">
+				<h:outputText id="startDateTextExp" value="#{exp.startDate}" />
+			</ace:column>
+			<ace:column id="endDateCellExp" headerText="End Date">
+				<h:outputText id="endDateTextExp" value="#{exp.endDate}" />
+			</ace:column>
+		</ace:dataTable>
+
+		<ace:panel id="resumePanelExp" header="Add Experience">
+			<h:panelGrid id="resumeGridExp" columns="2" width="100%"
+				styleClass="">
+
+				<h:panelGrid>
+					<ace:textEntry id="titleInput" value="#{resume.title}"
+						label="Job Title:" labelPosition="left" indicatorPosition="right"
+						required="true" requiredMessage="Please Enter your Job Title">
+						<ace:ajax render="@this jobMsg" event="blur" />
+					</ace:textEntry>
+				</h:panelGrid>
+				<h:message for="titleInput" id="jobMsg"></h:message>
+
+				<h:panelGrid>
+					<ace:textEntry id="companyInput" value="#{resume.company}"
+						label="Company:" labelPosition="left" indicatorPosition="right"
+						required="true" requiredMessage="Please enter the company name">
+						<ace:ajax render="@this companyMsg" event="blur" />
+					</ace:textEntry>
+				</h:panelGrid>
+				<h:message for="companyInput" id="companyMsg"></h:message>
+
+				<h:panelGrid>
+					<ace:autoCompleteEntry id="autoCompleteLocation"
+						value="#{resume.location}" filterMatchMode="contains"
+						label="City:" labelPosition="left" required="true"
+						requiredMessage="Please enter the city where you worked">
+						<f:selectItems value="#{autoCompleteCities.cities}" />
+						<ace:ajax event="valueChange" render="@all" />
+						<ace:ajax event="blur" render="@all" />
+					</ace:autoCompleteEntry>
+				</h:panelGrid>
+				<h:message for="autoCompleteLocation" id="locationMsg"></h:message>
+
+				<h:panelGrid>
+					<ace:textAreaEntry id="jobDescription"
+						value="#{resume.description}" label="Job Description"
+						labelPosition="left" required="true"
+						requiredMessage="Please enter your job desciption">
+						<ace:ajax render="@this jobDescription jobMsgExp" event="blur" />
+					</ace:textAreaEntry>
+				</h:panelGrid>
+				<h:message for="jobDescription" id="jobMsgExp"></h:message>
+
+				<h:panelGrid>
+					<ace:dateTimeEntry id="calStartExp" label="Enter Start Date:"
+						labelPosition="left" value="#{resume.startDateExp}"
+						pattern="MM/dd/yyyy" renderAsPopup="true" required="true"
+						requiredMessage="Please Enter the start date!" />
+				</h:panelGrid>
+				<h:message for="calStartExp" id="startMsgExp"></h:message>
+
+				<h:panelGrid>
+					<ace:dateTimeEntry id="calEndExp" label="Enter End Date:"
+						labelPosition="left" value="#{resume.endDateExp}"
+						pattern="MM/dd/yyyy" renderAsPopup="true" required="true"
+						requiredMessage="Please Enter the end date!" />
+
+				</h:panelGrid>
+				<h:message for="calEndExp" id="endMsgExp"></h:message>
+
 			</h:panelGrid>
 		</ace:panel>
-		<h:commandButton value="Add" action="#{resume.addEducation}"></h:commandButton>
+		<h:commandButton value="Add" action="#{resume.addExperience}"></h:commandButton>
 		<br></br>
 		<br></br>
 	</h:form>
-</h:form>
 
-<f:view>
 
-</f:view>
+	<h:form id="restofSkills">
+		<h:panelGrid columns="1">
+			<h:panelGrid columns="2">
+				<ace:autoCompleteEntry id="autoCompleteLanguages"
+				value="#{resume.progLanguage}" filterMatchMode="contains"
+				label="Programming Languages:" labelPosition="left">
+				<f:selectItems value="#{autoCompletePrLang.languages}" />
+				<ace:ajax event="valueChange" render="@all" />
+				<ace:ajax event="blur" render="@all" />
+			</ace:autoCompleteEntry>
+			<ace:pushButton id="addProgLang" value="Add"
+				actionListener="#{resume.addLanguage}" />
+			</h:panelGrid>
+
+			<h:panelGroup id="pg1" styleclass="outPane">
+				<h:panelGroup id="pg2"
+					style="vertical-align: middle">
+					<ui:repeat id="selections" value="#{resume.lists.progLanguages}"
+						var="lang">
+						<h:panelGroup id="pg3" styleClass="iblock">
+							<h:panelGrid columns="2">			
+									<h:outputText id="nameOut" value="#{lang.programmingLanguage}" />
+									<hr />
+							</h:panelGrid>
+						</h:panelGroup>
+					</ui:repeat>
+				</h:panelGroup>
+			</h:panelGroup>
+		</h:panelGrid>
+	</h:form>
+
+	<f:view>
+
+	</f:view>
 
 </h:body>
 
