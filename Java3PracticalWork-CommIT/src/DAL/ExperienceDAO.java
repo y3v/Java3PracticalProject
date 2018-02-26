@@ -15,9 +15,9 @@ public class ExperienceDAO {
 		  return experience;
 	}
 	
-	public List<Experience> getAllExperiencesForEmployeeId(Integer empId) {
+	public List<Experience> getAllExperiencesForEmployeeId(Integer id) {
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();	
-		List<Experience> experiences = session.selectList("mybatis.maps.ExperienceMapper.selectAllExperiencesForEmployee", empId);
+		List<Experience> experiences = session.selectList("mybatis.maps.ExperienceMapper.selectAllExperiencesForEmployee", id);
 		session.close();
 		return experiences;
 	}

@@ -25,17 +25,39 @@
 		<h:commandButton value="Send to db" action="#{dbbean.rettt}"></h:commandButton><br></br><br></br>
 	</h:form>
 	
-	
-	<ui:repeat var="exp" value="dbbean.experiences">
+	<ui:repeat var="exp" value="#{dbbean.experiences}">
 		<ul>
-			<li>#{exp.employeeId}</li>
-			<li>#{exp.company}</li>
-			<li>#{exp.title}</li>
-			<li>#{exp.description}</li>
+			<li>company : #{exp.company}</li>
+			<li>title : #{exp.title}</li>
+			<li>desc : #{exp.description}</li>
+			<li>desc : #{exp.startDate}</li>
+			<li>desc : #{exp.endDate}</li>
+			<li>
+				<ul> languages : 
+					<ui:repeat var="lang" value="#{exp.languages}">
+						<li>iso Code : #{lang.isoCode}</li>
+						<li>language name : #{lang.languageName}</li><br></br>
+					</ui:repeat>
+				</ul>
+			</li>
 			
-			<ui:repeat var="lang" value="exp.languages">
-				<li>#{lang.isoCode}</li>
-			</ui:repeat>
+			<li>
+				<ul>
+					<ui:repeat var="progLang" value="#{exp.programmingLanguages}">
+						<li>#{progLang.id}</li>
+						<li>#{progLang.programmingLanguage}</li>
+					</ui:repeat>			
+				</ul>
+			</li>
+			
+			<li>
+				<ul>
+					<ui:repeat var="field" value="#{exp.fields}">
+						<li>#{field.id}</li>
+						<li>#{field.field}</li>
+					</ui:repeat>
+				</ul>
+			</li>
 		</ul>
 	</ui:repeat>
 	

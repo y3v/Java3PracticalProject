@@ -59,6 +59,7 @@ public class DbTestBean {
 	}
 
 	public List<Experience> getExperiences() {
+		System.out.println("exp size " + experiences.size());
 		return experiences;
 	}
 

@@ -33,7 +33,7 @@
 			id = #{id}    
 	</update>
 		
-	<delete id="deleteProgrammingLanguage" parameterType="id">
+	<delete id="deleteProgrammingLanguage" parameterType="int">
 		DELETE FROM programming_language WHERE id = #{id}  	    
 	</delete>
 </mapper>
