@@ -8,6 +8,7 @@ public class Experience {
 	private String company;
 	private String title;
 	private String description;
+	private String location;
 	private Date startDate;
 	private Date endDate;
 	
@@ -53,6 +54,11 @@ public class Experience {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-	
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
+	}
 	
 }

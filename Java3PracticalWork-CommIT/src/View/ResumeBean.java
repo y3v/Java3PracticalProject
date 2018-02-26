@@ -1,39 +1,55 @@
 package View;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-
+import javax.faces.bean.ManagedProperty;
 import BLL.ResumeUtils;
-import Model.Education;
 
-@ManagedBean(name="resume")
-@SessionScoped
+@ManagedBean(name="resume", eager=true)
+
 
 public class ResumeBean {
-	private List<Education> education = new ArrayList<Education>();
+	
+	@ManagedProperty(value="#{lists}")
+	private ResumeListBean lists; //to access the bean where all the lists are stored for entire session
+	
+	//Education Section
 	private String designation;
 	private String degreeName;
 	private String schoolName;
 	private Date startDate;
 	private Date endDate;
 	
+	//Experience Section
+	private String company;
+	private String title;
+	private String description;
+	private Date startDateExp;
+	private Date endDateExp;
+	private String location;
+	
+	//Programming languages
+	private String progLanguage;
+	
 	public String addEducation() {
-		education.add(ResumeUtils.addEducation(designation, schoolName, degreeName, startDate, endDate));
+		lists.getEducation().add(ResumeUtils.addEducation(designation, schoolName, degreeName, startDate, endDate));
 		
-		return null; //I want it to stay on the same page
+		return "createResume"; //I want it to stay on the same page
 	}
-
-	public List<Education> getEducation() {
-		return education;
+	
+	public String addExperience() {
+		lists.getExperience().add(ResumeUtils.addExperience(title, description, company, location, startDateExp, endDateExp));
+		return "createResume";
 	}
-
-	public void setEducation(List<Education> education) {
-		this.education = education;
+	
+	public void addLanguage() {
+		lists.getProgLanguages().add(ResumeUtils.addProgLanguage(progLanguage));
+		progLanguage = "";
 	}
+	
+	
+	
+	//GETTERS AND SETTERS
 
 	public String getDesignation() {
 		return designation;
@@ -73,6 +89,71 @@ public class ResumeBean {
 
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
+	}
+
+
+	public String getCompany() {
+		return company;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Date getStartDateExp() {
+		return startDateExp;
+	}
+
+	public void setStartDateExp(Date startDateExp) {
+		this.startDateExp = startDateExp;
+	}
+
+	public Date getEndDateExp() {
+		return endDateExp;
+	}
+
+	public void setEndDateExp(Date endDateExp) {
+		this.endDateExp = endDateExp;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public ResumeListBean getLists() {
+		return lists;
+	}
+
+	public void setLists(ResumeListBean lists) {
+		this.lists = lists;
+	}
+
+	public String getProgLanguage() {
+		return progLanguage;
+	}
+
+	public void setProgLanguage(String progLanguage) {
+		this.progLanguage = progLanguage;
 	}
 	
 }
