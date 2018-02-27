@@ -3,9 +3,6 @@ package Model;
 import java.util.List;
 import javax.faces.bean.*;
 
-@ManagedBean
-@SessionScoped
-
 public class Employee {
 	
 	private int id;
@@ -20,6 +17,8 @@ public class Employee {
 	private String email;
 	private String phoneNumber;
 	private String socialMediaUrl;
+	private List<Education> educations;
+	private List<Experience> experiences;
 	
 	public int getId() {
 		return id;
@@ -92,6 +91,18 @@ public class Employee {
 	}
 	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
+	}
+	public List<Education> getEducations() {
+		return educations;
+	}
+	public void setEducations(List<Education> educations) {
+		this.educations = educations;
+	}
+	public List<Experience> getExperiences() {
+		return experiences;
+	}
+	public void setExperiences(List<Experience> experiences) {
+		this.experiences = experiences;
 	}
 	
 

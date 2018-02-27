@@ -16,8 +16,6 @@
 		<result property="email" column="email"/>
 		<result property="phoneNumber" column="phone_number"/>
 		<result property="socialMediaUrl" column="social_media_url"/>
-		<!-- <collection property="educations" column="id" ofType="Education" select="selectEducationForEmployee" />
-		<collection property="experiences" column="id" ofType="Experience" select="selectExperienceForEmployee" /> -->
 	</resultMap>
 
 	<!-- EMPLOYEE ACTIONS -->

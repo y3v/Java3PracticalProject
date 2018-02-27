@@ -9,6 +9,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 
 import BLL.UserUtils;
+import DAL.EmployeeDAO;
 import Model.Employee;
 
 @ManagedBean(name="employee")
@@ -30,26 +31,22 @@ public class EmployeeBean {
 	private Employee employee;
 	
 	public String validateLogin() {
-		employee = UserUtils.createTestUser();
-		String ret;
+		employee = UserUtils.getUserLogin(username, password);
 		
-		if (employee.getUsername().equals(username) && employee.getPassword().equals(password)) {
-			ret = "next";
+		if (employee != null) {
+			return "next";
 		}
 		else {
-			ret = null;
 			FacesContext context = FacesContext.getCurrentInstance();
 			context.addMessage("login-form:usernameInput", new FacesMessage("Invalid Username or Password"));
+			return null;
 		}
-		return ret;
 	}
 	
 	public void checkUsernameExists(FacesContext context, UIComponent validate, Object value){
 	    String username = (String)value;
 	    
-	    //THIS IS WHERE WE RETRIEVE LIST OF USERNAMES TO SEE IF USERNAME ALREADY EXISTS
-
-	    if(username.equals("admin")){
+	    if(EmployeeDAO.getByUsername(username) != null){
 	        ((UIInput)validate).setValid(false);
 	        FacesMessage msg = new FacesMessage("Username already exists");
 	        context.addMessage(validate.getClientId(context), msg);

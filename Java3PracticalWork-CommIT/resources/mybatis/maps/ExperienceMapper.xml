@@ -104,7 +104,7 @@
 	    FROM 
 	    	programming_language plang
 	    JOIN 
-	    	experience_programming_language explang 
+	    	experience_programming_language explang
 	    	ON 
 	    		explang.programming_language_id = plang.id
 	    JOIN 
