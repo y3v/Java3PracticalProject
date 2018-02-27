@@ -104,7 +104,7 @@ public class EmployeeBean {
 	}
 	
 	public String createProfile() {
-		UserUtils.fillProfile(employee, city, province, phone, postalCode, address);
+		employee = UserUtils.fillProfile(employee, city, province, phone, postalCode, address);
 		
 		return ("employeeOptions");
 	}

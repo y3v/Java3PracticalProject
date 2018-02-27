@@ -28,18 +28,20 @@ public class EmployeeDAO {
 		  return employee;
 	}
 	
-	public static void insert(Employee employee){
+	public static Employee insert(Employee employee){
 		  SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();	
 		  session.insert("mybatis.maps.EmployeeMapper.insertEmployee", employee);
 		  session.commit();
 		  session.close();
+		  return employee;
 	}
 	
-	public static void update(Employee employee){
+	public static Employee update(Employee employee){
 		  SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();	
 		  session.update("mybatis.maps.EmployeeMapper.updateEmployeeById", employee);
 		  session.commit();
 		  session.close();
+		  return employee;
 	}
 	
 	public static void softDelete(Employee employee){

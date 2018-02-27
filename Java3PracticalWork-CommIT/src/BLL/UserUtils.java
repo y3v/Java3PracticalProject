@@ -31,20 +31,17 @@ public class UserUtils {
 	}
 	
 	public static Employee createEmployee(String username, String password, String firstname, String lastname, String email) {
-		//INSERT INTO DB HERE
 		Employee emp = new Employee();
 		emp.setFirstName(firstname);
 		emp.setLastName(lastname);
 		emp.setPassword(password);
 		emp.setUsername(username);
 		emp.setEmail(email);
-
-		EmployeeDAO.insert(emp);
 		
-		return emp;
+		return EmployeeDAO.insert(emp);
 	}
 	
-	public static void fillProfile(Employee employee, String city, String province, String phone, String postalCode, String address){
+	public static Employee fillProfile(Employee employee, String city, String province, String phone, String postalCode, String address){
 		if (city != null) {
 			employee.setCity(city);
 		}
@@ -60,5 +57,7 @@ public class UserUtils {
 		if (address != null) {
 			employee.setAddress(address);
 		}
+
+		return EmployeeDAO.update(employee);
 	}
 }	
