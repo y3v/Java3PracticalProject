@@ -19,6 +19,8 @@ public class Employee {
 	private String socialMediaUrl;
 	private List<Education> educations;
 	private List<Experience> experiences;
+	private List<Language> languages;
+	private List<ProgrammingLanguage> progLanguages;
 	
 	public int getId() {
 		return id;
@@ -103,6 +105,18 @@ public class Employee {
 	}
 	public void setExperiences(List<Experience> experiences) {
 		this.experiences = experiences;
+	}
+	public List<Language> getLanguages() {
+		return languages;
+	}
+	public void setLanguages(List<Language> languages) {
+		this.languages = languages;
+	}
+	public List<ProgrammingLanguage> getProgLanguages() {
+		return progLanguages;
+	}
+	public void setProgLanguages(List<ProgrammingLanguage> progLanguages) {
+		this.progLanguages = progLanguages;
 	}
 	
 

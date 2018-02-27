@@ -8,35 +8,38 @@ import DAL.MyBatisUtil;
 
 public class ExperienceDAO {
 	
-	public Experience getById(Integer id) {
+	public static Experience getById(Integer id) {
 		  SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();	
 		  Experience experience = session.selectOne("mybatis.maps.ExperienceMapper.selectExperience", id);
 		  session.close();
 		  return experience;
 	}
 	
-	public List<Experience> getAllExperiencesForEmployeeId(Integer id) {
+	public static List<Experience> getAllExperiencesForEmployeeId(Integer id) {
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();	
 		List<Experience> experiences = session.selectList("mybatis.maps.ExperienceMapper.selectAllExperiencesForEmployee", id);
 		session.close();
 		return experiences;
 	}
 		
-	public void insert(Experience experience){
+	public static Experience insert(Experience experience){
 		  SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();	
 		  session.insert("mybatis.maps.ExperienceMapper.insertExperience", experience);
 		  session.commit();
 		  session.close();
+		  return experience;
 	}
 	
-	public void update(Experience experience){
+	public static Experience update(Experience experience){
 		  SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();	
 		  session.update("mybatis.maps.ExperienceMapper.updateExperience", experience);
 		  session.commit();
 		  session.close();
+		  
+		  return experience;
 	}
 	
-	public void softDelete(Experience experience){
+	public static void softDelete(Experience experience){
 		  SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();	
 		  session.update("mybatis.maps.ExperienceMapper.softDeleteExperience", experience);
 		  session.commit();

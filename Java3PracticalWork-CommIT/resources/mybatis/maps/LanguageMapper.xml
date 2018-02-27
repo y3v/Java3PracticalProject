@@ -17,11 +17,38 @@
 	    	iso_code = #{isoCode}
 	</select>
 	
+	<select id="selectLanguageByName" resultType="language" parameterType="String" resultMap="languageResult">
+	    SELECT 
+	    	*
+	    FROM 
+	    	language 
+	    WHERE 
+	    	language_name = #{name}
+	</select>
+	
+	<select id="selectLanguagesByEmployeeId" resultType="language" parameterType="int" resultMap="languageResult">
+	    
+	SELECT lang.iso_code, lang.language_name
+	FROM 
+		language lang
+	JOIN 
+		employee_language emlang ON emlang.iso_code = lang.iso_code
+	JOIN 
+		employee emp ON emp.id = emlang.employee_id AND emp.id = #{employeeId};
+	</select>
+	
 	<insert id="insertLanguage" parameterType="language"  keyProperty="isoCode" useGeneratedKeys="true">
 		INSERT INTO 
 			language (iso_code, language_name)
 		VALUES
 			(#{isoCode}, #{languageName})
+	</insert>
+	
+	<insert id="insertLanguageRelationShip" parameterType="idid">
+		INSERT INTO 
+			employee_language (employee_id, iso_code)
+		VALUES
+			(#{id1}, #{id2})
 	</insert>
 	
 	<update id="updateLanguage" parameterType="language" keyProperty="isoCode" useGeneratedKeys="true">
@@ -33,7 +60,12 @@
 			iso_code = #{isoCode}    
 	</update>
 		
-	<delete id="deleteLanguage" parameterType="String">
-		DELETE FROM employee WHERE iso_code = #{isoCode}  	    
+	<delete id="deleteLanguage" parameterType="idid">
+		DELETE FROM 
+			employee_language 
+		WHERE
+			employee_id = #{id1}
+		AND
+			iso_code = #{id2}  	    
 	</delete>
 </mapper>

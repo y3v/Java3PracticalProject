@@ -1,6 +1,11 @@
 package DAL;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
+
+import Model.ActionsDoubleId;
+import Model.Employee;
 import Model.ProgrammingLanguage;
 import DAL.MyBatisUtil;
 
@@ -12,10 +17,32 @@ public class ProgrammingLanguageDAO {
 		  session.close();
 		  return language;
 	}
-		
-	public void insert(ProgrammingLanguage language){
+	
+	public static ProgrammingLanguage getByLanguageName(String lang) {
+		  SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();	
+		  ProgrammingLanguage language = session.selectOne("mybatis.maps.ProgrammingLanguageMapper.selectProgrammingLanguageByName", lang);
+		  session.close();
+		  return language;
+	}
+	
+	public static List<ProgrammingLanguage> selectAllByEmployeeId(Integer id) {
+		  SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();	
+		  List<ProgrammingLanguage> languages = session.selectList("mybatis.maps.ProgrammingLanguageMapper.selectProgrammingLanguagesByEmployeeId", id);
+		  session.close();
+		  return languages;
+	}
+	
+	public static ProgrammingLanguage insert(ProgrammingLanguage language){
 		  SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();	
 		  session.insert("mybatis.maps.ProgrammingLanguageMapper.insertProgrammingLanguage", language);
+		  session.commit();
+		  session.close();
+		  return language;
+	}
+	
+	public static void insertRelationship(ActionsDoubleId idid){
+		  SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();	
+		  session.insert("mybatis.maps.ProgrammingLanguageMapper.insertProgrammingLanguageRelationship", idid);
 		  session.commit();
 		  session.close();
 	}
@@ -27,10 +54,11 @@ public class ProgrammingLanguageDAO {
 		  session.close();
 	}
 	
-	public void delete(Integer id){
+	public static void delete(ActionsDoubleId idid){
 		  SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();	
-		  session.delete("mybatis.maps.ProgrammingLanguageMapper.deleteProgrammingLanguage", id);
+		  session.delete("mybatis.maps.ProgrammingLanguageMapper.deleteProgrammingLanguage", idid);
 		  session.commit();
 		  session.close();
+		  
 		}
 }

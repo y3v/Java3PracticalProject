@@ -229,7 +229,7 @@
 						<h:panelGroup id="pg3" styleClass="iblock">
 							<h:panelGrid columns="2">			
 									<h:outputText id="nameOut" value="#{lang.programmingLanguage}" />
-									<h:commandButton value="x" action="#{resume.removeLanguage(lang.programmingLanguage)}"></h:commandButton>
+									<h:commandButton value="x" action="#{resume.removeLanguage(lang)}"></h:commandButton>
 							</h:panelGrid>
 						</h:panelGroup>
 					</ui:repeat>
@@ -255,7 +255,7 @@
 						<h:panelGroup id="pg3" styleClass="iblock">
 							<h:panelGrid columns="2">			
 									<h:outputText id="nameOut" value="#{lang.languageName}" />
-									<h:commandButton value="x" action="#{resume.removeLanguageSpoken(lang.languageName)}"></h:commandButton>
+									<h:commandButton value="x" action="#{resume.removeLanguageSpoken(lang)}"></h:commandButton>
 							</h:panelGrid>
 						</h:panelGroup>
 					</ui:repeat>

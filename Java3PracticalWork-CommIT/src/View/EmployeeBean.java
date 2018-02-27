@@ -38,7 +38,7 @@ public class EmployeeBean {
 		employee = UserUtils.getUserLogin(username, password);
 		
 		if (employee != null) {
-			return "next";
+			return "employeeOptions";
 		}
 		else {
 			FacesContext context = FacesContext.getCurrentInstance();
