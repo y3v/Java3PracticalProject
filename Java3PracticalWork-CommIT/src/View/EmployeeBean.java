@@ -17,18 +17,22 @@ import Model.Employee;
 
 public class EmployeeBean {
 	
+	//registration values
 	private String username;
 	private String password = "";
 	private String password2 = "";
 	private String firstname;
 	private String lastname;
 	private String email;
+	
+	//profile values -- optional
 	private String address;
 	private String city;
 	private String province;
 	private String phone;
 	private String postalCode;
 	private Employee employee;
+	private boolean profileExists = false; //NEW PROPERTY -- set this to true if the profile exists
 	
 	public String validateLogin() {
 		employee = UserUtils.getUserLogin(username, password);
@@ -102,7 +106,16 @@ public class EmployeeBean {
 	public String createProfile() {
 		UserUtils.fillProfile(employee, city, province, phone, postalCode, address);
 		
-		return ("next");
+		return ("employeeOptions");
+	}
+	
+	public String doesProfileExist() { //NEW METHOD
+		if (address == null || address == null || address == null ||address == null || address == null) {
+			return "createProfile";
+		}
+		else {
+			return "viewProfile";
+		}
 	}
 
 	public String getUsername() {
@@ -195,6 +208,18 @@ public class EmployeeBean {
 
 	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode.toUpperCase();
+	}
+
+	public boolean isProfileExists() {
+		return profileExists;
+	}
+
+	public void setProfileExists(boolean profileExists) {
+		this.profileExists = profileExists;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 	
 }

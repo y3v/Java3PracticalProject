@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ace="http://www.icefaces.org/icefaces/components"
-	xmlns:icecore="http://www.icefaces.org/icefaces/core">
+	xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<title>Insert title here</title>
 	<link rel="stylesheet" href="style/main.css" />
+	<script src="script/home.js" />
 </h:head>
 
 <h:body>
@@ -22,10 +19,9 @@
 				src="images/commIT.png" alt="Image of commIT Logo" /></a>
 			<div class="col-m-10 col-8" id="nav">
 				<ul>
-					<li class="col-m-3"><a href="login.jsf">LOGIN</a></li>
+					<li class="col-m-3"><a href="login-redirect.jsf">LOGIN</a></li>
 					<li class="col-m-3"><a href="registration.jsf">SIGN UP</a></li>
-					<li class="col-m-3"><a href="oops.html?special=account">WHY
-							COMMIT?</a></li>
+					<li class="col-m-3"><a href="oops.html?special=account">WHY COMMIT?</a></li>
 					<li class="col-m-3"><a href="contact.html">CONTACT</a></li>
 				</ul>
 			</div>
@@ -33,38 +29,17 @@
 		<!-- END OF HEADER -->
 	</div>
 
-	<h1 class="bump">Start looking for your dream job!</h1>
+	<h1>Find your dream IT job today!</h1>
 
-	<h:form id="login-form" styleClass="login-form" >
-		<ace:panel id="loginPanel" header="Login Info" styleClass="form-panel" style="border:3px solid #01796F; background-color:#effbef;background:#effbef;">
-			<h:panelGrid id="inputGrid" columns="2" width="100%"
-				styleClass="textEntryInputTable">
-				<ace:textEntry id="usernameInput" value="#{employee.username}"
-					label="Username" labelPosition="left" required="true" requiredMessage="Please enter your username!"
-					indicatorPosition="right">
-					<ace:ajax render="@this usernameMsg" event="blur" />
-				</ace:textEntry>
-				<ace:message id="usernameMsg" for="usernameInput" />
-				<ace:textEntry id="passwordInput" secret="true" 
-					value="#{employee.password}" label="Password" labelPosition="left"
-					required="true" indicatorPosition="right" requiredMessage="Please enter your password!">
-					<ace:ajax render="@this passwordMsg" event="blur" />
-				</ace:textEntry>
-				<ace:message id="passwordMsg" for="passwordInput" />
-			</h:panelGrid>
-		</ace:panel>
-		<h:commandButton styleClass="bump2 login-button" value="Login" action="#{employee.validateLogin}"></h:commandButton>
-		<br></br>
-		<br></br>
-	</h:form>
-	<h:link styleClass="link-style" value="Don't have an account yet? Click here to register"
-		outcome="registration.xhtml"></h:link>
+	<h2>We match only the best IT professionals with companies in
+		need!</h2>
 
-	<f:view>
-
-	</f:view>
-
-	<div id="footer-container" class="bump">
+	<img src="images/banner.png" alt="Homepage pic"/>
+	
+	<h2><a href="registration.jsf">Register now and get connected!</a></h2>
+	
+	
+	<div id="footer-container">
 		<!-- START OF FOOTER -->
 		<div class="wrapper row">
 			<div class="site-hub row col-4">
@@ -106,6 +81,9 @@
 		</div>
 		<!-- END OF FOOTER -->
 	</div>
+
+	<h:form>
+	</h:form>
 
 </h:body>
 

@@ -19,6 +19,8 @@ public class ResumeBean {
 	@ManagedProperty(value="#{lists}")
 	private ResumeListBean lists; //to access the bean where all the lists are stored for entire session
 	
+	private boolean resumeExists = false; //NEW PROPERTY -- set this to true if the profile exists
+	
 	//Education Section
 	private String designation;
 	private String degreeName;
@@ -92,7 +94,15 @@ public class ResumeBean {
 		}
 	}
 	
+	//Navigators related to the resume
 	
+	public String createResume() {
+		return "createResume";
+	}
+	
+	public String viewResumes() {
+		return "viewResumes";
+	}
 	
 	//GETTERS AND SETTERS
 
@@ -209,5 +219,11 @@ public class ResumeBean {
 		this.language = language;
 	}
 	
-	
+	public boolean isResumeExists() {
+		return resumeExists;
+	}
+
+	public void setResumeExists(boolean resumeExists) {
+		this.resumeExists = resumeExists;
+	}
 }

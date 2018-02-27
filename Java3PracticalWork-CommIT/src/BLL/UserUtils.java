@@ -29,6 +29,7 @@ public class UserUtils {
 		else
 			return null;
 	}
+	
 	public static Employee createEmployee(String username, String password, String firstname, String lastname, String email) {
 		//INSERT INTO DB HERE
 		Employee emp = new Employee();
