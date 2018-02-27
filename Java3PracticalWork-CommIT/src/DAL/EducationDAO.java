@@ -12,6 +12,13 @@ public class EducationDAO {
 		  session.close();
 		  return education;
 	}
+	
+	public Education getByEmployeeId(Integer id) {
+		  SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();	
+		  Education education = session.selectOne("mybatis.maps.EducationMapper.selectEducationByEmployeeId", id);
+		  session.close();
+		  return education;
+	}
 		
 	public void insert(Education education){
 		  SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();	

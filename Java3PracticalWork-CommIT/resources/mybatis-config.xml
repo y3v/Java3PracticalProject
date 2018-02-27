@@ -13,6 +13,7 @@
      <typeAlias type="Model.Experience" alias="experience"/>
      <typeAlias type="Model.JobPosting" alias="jobPosting"/>
      <typeAlias type="Model.JobSearch" alias="jobSearch"/>
+     <typeAlias type="Model.Field" alias="field"/>
   </typeAliases>  
   <environments default="development">
     <environment id="development">
@@ -35,5 +36,6 @@
     <mapper resource="mybatis/maps/ExperienceMapper.xml" />
     <mapper resource="mybatis/maps/JobPostingMapper.xml" />
     <mapper resource="mybatis/maps/JobSearchMapper.xml" />
+    <mapper resource="mybatis/maps/FieldMapper.xml" />
   </mappers>
 </configuration>

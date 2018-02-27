@@ -11,10 +11,16 @@
 		<result property="lastName" column="last_name"/>
 		<result property="address" column="address"/>
 		<result property="city" column="city"/>
+		<result property="province" column="province"/>
+		<result property="postalCode" column="postal_code"/>
 		<result property="email" column="email"/>
 		<result property="phoneNumber" column="phone_number"/>
 		<result property="socialMediaUrl" column="social_media_url"/>
+		<!-- <collection property="educations" column="id" ofType="Education" select="selectEducationForEmployee" />
+		<collection property="experiences" column="id" ofType="Experience" select="selectExperienceForEmployee" /> -->
 	</resultMap>
+
+	<!-- EMPLOYEE ACTIONS -->
 	
 	<select id="selectEmployeeById" resultType="employee" parameterType="int" resultMap="employeeResult">
 	    SELECT 
@@ -61,6 +67,8 @@
 			last_name = #{lastName},
 			address = #{address},
 			city = #{city},
+			province = #{province},
+			postal_code = #{postalCode}
 			email = #{email},
 			phone_number = #{phoneNumber},
 			social_media_url = #{socialMediaUrl}
@@ -80,4 +88,27 @@
 	<delete id="deleteEmployee" parameterType="int">
 		DELETE FROM employee WHERE id =#{id}  	    
 	</delete>
+	
+	
+	<!--
+	
+	<select id="selectEducationForEmployee" resultType="Education">
+		SELECT
+			*
+		FROM
+			education
+		WHERE
+			employee_id = #{id}
+	</select>
+	
+	<select id="selectExperienceForEmployee" resultType="Experience">
+		SELECT
+			*
+		FROM
+			experience
+		WHERE
+			employee_id = #{id}
+	</select>
+	 -->
+	 
 </mapper>

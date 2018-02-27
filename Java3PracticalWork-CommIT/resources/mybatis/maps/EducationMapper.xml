@@ -22,6 +22,15 @@
 	    	id = #{id}
 	</select>
 	
+	<select id="selectEducationByEmployeeId" resultType="education" parameterType="int" resultMap="educationResult">
+	    SELECT 
+	    	*
+	    FROM 
+	    	education 
+	    WHERE 
+	    	employee_id = #{employeeId}
+	</select>
+	
 	<insert id="insertEducation" parameterType="education"  keyProperty="id" useGeneratedKeys="true">
 		INSERT INTO 
 			education (
