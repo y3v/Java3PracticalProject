@@ -38,7 +38,8 @@ public class EmployeeBean {
 		employee = UserUtils.getUserLogin(username, password);
 		
 		if (employee != null) {
-			return "next";
+			System.out.println("employeeOptions");
+			return "employeeOptions";
 		}
 		else {
 			FacesContext context = FacesContext.getCurrentInstance();
@@ -100,7 +101,7 @@ public class EmployeeBean {
 		System.out.println("Last name:" + employee.getLastName());
 		System.out.println("First Name:" + employee.getFirstName());
 		
-		return ("next");
+		return ("employeeOptions");
 	}
 	
 	public String createProfile() {
@@ -111,10 +112,12 @@ public class EmployeeBean {
 	
 	public String doesProfileExist() { //NEW METHOD
 		if (address == null || address == null || address == null ||address == null || address == null) {
+			System.out.println("Go to: createProfile");
 			return "createProfile";
 		}
 		else {
-			return "viewProfile";
+			System.out.println("Go to: viewProfile");
+			return "createProfile";
 		}
 	}
 

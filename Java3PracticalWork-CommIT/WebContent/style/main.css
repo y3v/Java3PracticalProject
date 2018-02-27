@@ -31,7 +31,7 @@ article, aside, details, figcaption, figure, footer, header, main, #nav, section
 /**************GRID SYSTEM SETUP******************/
 /***************MOBILE****************************/
 
-[class*="col-"]{
+[class^="col-"],[class^="col-m"]{
 	width:100%;
 	float:none;
 }
@@ -200,7 +200,7 @@ header>a{
 }
 
 .bump{
-	margin-top:100px;
+	margin-top:130px;
 	text-align:center;
 }
 
@@ -251,7 +251,7 @@ header>a{
 	margin-top:20px;
 }
 
-.login-button{
+.login-button, .ice-pushbutton button{
 	display:block;
 	width:100px;
 	margin:20px auto;
@@ -259,6 +259,7 @@ header>a{
 	border:2px solid #01796F;
 	border-radius: 5px;
 	background-color:#a9e1a9;
+	background:#a9e1a9 !important;
 }
 
 .login-button:hover{
@@ -316,6 +317,45 @@ header>a{
 #profile-form{
 	width:50%;
 	margin:auto;
+} */
+
+.formPanel > div > table > tbody{
+	display:block;
+	margin:auto;
+	width:70%;
+}
+
+.ui-inputfield{
+	width:250px !important;
+} 
+
+.ui-widget-header{
+	background:#01796F !important;
+	color:white !important;
+}
+
+#restofSkills td input[type="submit"]{
+	background-color:#a9e1a9;
+	border:none;
+	cursor:pointer;
+}
+
+.showResume h3{
+	font-weight: normal;
+	text-align:left;
+}
+
+#main-main *{
+	text-align:center;
+}
+
+#main-main img{
+	margin:auto;
+	display:block;
+}
+
+#main-main a{
+	text-decoration:none;
 }
 
 
@@ -899,7 +939,7 @@ iframe{ /*map styles*/
 /***************TABLET STYLES****************/
 @media only screen and (min-width: 480px){
 	
-	[class*="col-"]{
+	[class^="col-"]{
 		float:left;
 	}
 	
@@ -1255,7 +1295,29 @@ iframe{ /*map styles*/
 	}
 }
 
+div.site-hub,div.social,h3.contact-phone{
+	display:inline-block;
+}
 
+.formPanelPush{
+	width:70%;
+	margin:auto;
+	
+}
+
+.formPanelPush .ui-panel-titlebar{
+	display:flex;
+	justify-content:center;
+}
+
+.formPanelPush .ui-panel-content{
+	display:flex;
+	justify-content:center;
+}
+
+#restofSkills .ui-input-label-left{
+	width:200px;
+}
 
 
 
