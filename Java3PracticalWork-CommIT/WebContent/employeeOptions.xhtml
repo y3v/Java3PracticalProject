@@ -19,10 +19,10 @@
 			<div class="col-m-10 col-8" id="nav">
 				<ul>
 					<h:link outcome="#{nav.invalidateSession()}"
-						styleClass="menu-link col-m-3" value="LOGOUT">
+						styleClass="menu-link col-m-3" style="float:left;" value="LOGOUT">
 					</h:link>
 					<h:link outcome="#{nav.getAccount()}"
-						styleClass="menu-link col-m-3" value="ACCOUNT">
+						styleClass="menu-link col-m-3" style="float:left;" value="ACCOUNT">
 					</h:link>
 					<li class="col-m-3"><a href="oops.html?special=account">WHY
 							COMMIT?</a></li>
@@ -48,7 +48,7 @@
 
 		<div>
 			<h:link outcome="#{employee.doesProfileExist()}"
-				styleClass="options-box" value="View Profile"
+				styleClass="options-box" value="Edit Profile"
 				rendered="#{employee.profileExists}">
 			</h:link>
 		</div>

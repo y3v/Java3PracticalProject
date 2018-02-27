@@ -53,7 +53,7 @@
 				<ace:message id="passwordMsg" for="passwordInput" />
 			</h:panelGrid>
 		</ace:panel>
-		<h:commandButton styleClass="bump2 login-button" value="Login" action="#{employee.validateLogin}"></h:commandButton>
+		<h:button styleClass="bump2 login-button" value="Login" outcome="#{employee.validateLogin()}"></h:button>
 		<br></br>
 		<br></br>
 	</h:form>

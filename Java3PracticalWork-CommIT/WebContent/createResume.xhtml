@@ -8,13 +8,14 @@
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<title>Insert title here</title>
+	<link rel="stylesheet" href="style/main.css" />
 	<style type="text/css">
 .iblock {
 	display: inline-block;
-	border: 1px solid black;
+	border: 2px solid #01796F;
 	margin: 1em;
-	border-radius:5px;
-	background-color:#ddd;
+	border-radius: 5px;
+	background-color: #a9e1a9;
 }
 
 .outPane {
@@ -29,8 +30,30 @@
 
 <h:body>
 
+	<div id="header-container">
+		<!-- START OF HEADER -->
+		<div class="row wrapper">
+			<a class="col-m-2" id="logo" href="homepage.jsf"><img
+				src="images/commIT.png" alt="Image of commIT Logo" /></a>
+			<div class="col-m-10 col-8" id="nav">
+				<ul>
+					<h:link outcome="#{nav.invalidateSession()}"
+						styleClass="menu-link col-m-3" style="float:left;" value="LOGOUT">
+					</h:link>
+					<h:link outcome="#{nav.getAccount()}"
+						styleClass="menu-link col-m-3" style="float:left;" value="ACCOUNT">
+					</h:link>
+					<li class="col-m-3"><a href="oops.html?special=account">WHY
+							COMMIT?</a></li>
+					<li class="col-m-3"><a href="contact.html">CONTACT</a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- END OF HEADER -->
+	</div>
+
 	<h:form>
-		<h1>Create your Resume</h1>
+		<h1 style="text-align: center">Create your Resume</h1>
 		<h:form id="resume-form">
 			<ace:dataTable id="eduTable"
 				rendered="#{!resume.lists.education.isEmpty()}"
@@ -53,11 +76,11 @@
 				</ace:column>
 			</ace:dataTable>
 
-			<ace:panel id="resumePanel" header="Add Education">
+			<ace:panel id="resumePanel" header="Add Education" styleClass="formPanel formPanelPush">
 				<h:panelGrid id="resumeGrid" columns="2" width="100%" styleClass="">
 
 					<h:panelGrid>
-						<ace:autoCompleteEntry id="autoCompleteEdu"
+						<ace:autoCompleteEntry id="autoCompleteEdu" width="300"
 							value="#{resume.designation}" filterMatchMode="contains"
 							label="Degree Type:" labelPosition="left" required="true"
 							requiredMessage="Please Enter your Degree/Diploma Type">
@@ -69,7 +92,7 @@
 					<h:message for="autoCompleteEdu" id="eduMsg"></h:message>
 
 					<h:panelGrid>
-						<ace:textEntry id="eduNameInput" value="#{resume.degreeName}"
+						<ace:textEntry id="eduNameInput" value="#{resume.degreeName}" styleClass="input300"
 							label="Degree Name:" labelPosition="left"
 							indicatorPosition="right" required="true"
 							requiredMessage="Please Enter your Degree/Diploma Name">
@@ -80,7 +103,7 @@
 
 					<h:panelGrid>
 						<ace:autoCompleteEntry id="autoCompleteSchool"
-							value="#{resume.schoolName}" filterMatchMode="contains"
+							value="#{resume.schoolName}" filterMatchMode="contains" width="300"
 							label="School Name:" labelPosition="left" required="true"
 							requiredMessage="Please Enter your School Name">
 							<f:selectItems value="#{autoCompleteSchools.schools}" />
@@ -109,7 +132,7 @@
 
 				</h:panelGrid>
 			</ace:panel>
-			<h:commandButton value="Add" action="#{resume.addEducation}"></h:commandButton>
+			<h:commandButton styleClass="login-button" value="Add" action="#{resume.addEducation}"></h:commandButton>
 			<br></br>
 			<br></br>
 		</h:form>
@@ -138,12 +161,12 @@
 			</ace:column>
 		</ace:dataTable>
 
-		<ace:panel id="resumePanelExp" header="Add Experience">
+		<ace:panel id="resumePanelExp" header="Add Experience" styleClass="formPanel formPanelPush">
 			<h:panelGrid id="resumeGridExp" columns="2" width="100%"
 				styleClass="">
 
 				<h:panelGrid>
-					<ace:textEntry id="titleInput" value="#{resume.title}"
+					<ace:textEntry id="titleInput" value="#{resume.title}" styleClass="input300"
 						label="Job Title:" labelPosition="left" indicatorPosition="right"
 						required="true" requiredMessage="Please Enter your Job Title">
 						<ace:ajax render="@this jobMsg" event="blur" />
@@ -152,7 +175,7 @@
 				<h:message for="titleInput" id="jobMsg"></h:message>
 
 				<h:panelGrid>
-					<ace:textEntry id="companyInput" value="#{resume.company}"
+					<ace:textEntry id="companyInput" value="#{resume.company}" styleClass="input300"
 						label="Company:" labelPosition="left" indicatorPosition="right"
 						required="true" requiredMessage="Please enter the company name">
 						<ace:ajax render="@this companyMsg" event="blur" />
@@ -161,7 +184,7 @@
 				<h:message for="companyInput" id="companyMsg"></h:message>
 
 				<h:panelGrid>
-					<ace:autoCompleteEntry id="autoCompleteLocation"
+					<ace:autoCompleteEntry id="autoCompleteLocation" width="300"
 						value="#{resume.location}" filterMatchMode="contains"
 						label="City:" labelPosition="left" required="true"
 						requiredMessage="Please enter the city where you worked">
@@ -173,7 +196,7 @@
 				<h:message for="autoCompleteLocation" id="locationMsg"></h:message>
 
 				<h:panelGrid>
-					<ace:textAreaEntry id="jobDescription"
+					<ace:textAreaEntry id="jobDescription" styleClass="input300"
 						value="#{resume.description}" label="Job Description"
 						labelPosition="left" required="true"
 						requiredMessage="Please enter your job desciption">
@@ -191,7 +214,7 @@
 				<h:message for="calStartExp" id="startMsgExp"></h:message>
 
 				<h:panelGrid>
-					<ace:dateTimeEntry id="calEndExp" label="Enter End Date:"
+					<ace:dateTimeEntry id="calEndExp" label="Enter End Date:" width="300"
 						labelPosition="left" value="#{resume.endDateExp}"
 						pattern="MM/dd/yyyy" renderAsPopup="true" required="true"
 						requiredMessage="Please Enter the end date!" />
@@ -201,7 +224,7 @@
 
 			</h:panelGrid>
 		</ace:panel>
-		<h:commandButton value="Add" action="#{resume.addExperience}"></h:commandButton>
+		<h:commandButton styleClass="login-button" value="Add" action="#{resume.addExperience}"></h:commandButton>
 		<br></br>
 		<br></br>
 	</h:form>
@@ -209,67 +232,122 @@
 
 	<h:form id="restofSkills">
 		<h:panelGrid columns="1">
-		
+
 			<h:panelGrid columns="2">
 				<ace:autoCompleteEntry id="autoCompleteLanguages"
 					value="#{resume.progLanguage}" filterMatchMode="contains"
 					label="Programming Languages:" labelPosition="left">
 					<f:selectItems value="#{autoCompletePrLang.languages}" />
-					<ace:ajax  execute="@this" render="@form" />
+					<ace:ajax execute="@this" render="@form" />
 				</ace:autoCompleteEntry>
-				<ace:pushButton id="addProgLang" value="Add"
-					actionListener="#{resume.addLanguage}"/>
+				<ace:pushButton styleClass=".login-button" id="addProgLang" value="Add"
+					actionListener="#{resume.addLanguage}" />
 			</h:panelGrid>
 
 			<h:panelGroup id="pg1" styleclass="outPane">
-				<h:panelGroup id="pg2"
-					style="vertical-align: middle">
+				<h:panelGroup id="pg2" style="vertical-align: middle">
 					<ui:repeat id="selections" value="#{resume.lists.progLanguages}"
 						var="lang">
 						<h:panelGroup id="pg3" styleClass="iblock">
+<<<<<<< HEAD
+							<h:panelGrid columns="2">
+								<h:outputText id="nameOut" value="#{lang.programmingLanguage}" />
+								<h:commandButton value="x"
+									action="#{resume.removeLanguage(lang.programmingLanguage)}"></h:commandButton>
+=======
 							<h:panelGrid columns="2">			
 									<h:outputText id="nameOut" value="#{lang.programmingLanguage}" />
 									<h:commandButton value="x" action="#{resume.removeLanguage(lang)}"></h:commandButton>
+>>>>>>> refs/remotes/origin/master
 							</h:panelGrid>
 						</h:panelGroup>
 					</ui:repeat>
 				</h:panelGroup>
 			</h:panelGroup>
-			
+
 			<h:panelGrid columns="2">
 				<ace:autoCompleteEntry id="autoCompleteLanguages2"
 					value="#{resume.language}" filterMatchMode="contains"
 					label="Languages Spoken:" labelPosition="left">
 					<f:selectItems value="#{autoCompleteLang.languages}" />
-					<ace:ajax  execute="@this" render="@form" />
+					<ace:ajax execute="@this" render="@form" />
 				</ace:autoCompleteEntry>
 				<ace:pushButton id="addProgLangSpoken" value="Add"
-					actionListener="#{resume.addLanguageSpoken}"/>
+					actionListener="#{resume.addLanguageSpoken}" />
 			</h:panelGrid>
 
 			<h:panelGroup id="pg1lang" styleclass="outPane">
-				<h:panelGroup id="pg2lang"
-					style="vertical-align: middle">
+				<h:panelGroup id="pg2lang" style="vertical-align: middle">
 					<ui:repeat id="selectionsLang" value="#{resume.lists.languages}"
 						var="lang">
 						<h:panelGroup id="pg3" styleClass="iblock">
+<<<<<<< HEAD
+							<h:panelGrid columns="2">
+								<h:outputText id="nameOut" value="#{lang.languageName}" />
+								<h:commandButton value="x"
+									action="#{resume.removeLanguageSpoken(lang.languageName)}"></h:commandButton>
+=======
 							<h:panelGrid columns="2">			
 									<h:outputText id="nameOut" value="#{lang.languageName}" />
 									<h:commandButton value="x" action="#{resume.removeLanguageSpoken(lang)}"></h:commandButton>
+>>>>>>> refs/remotes/origin/master
 							</h:panelGrid>
 						</h:panelGroup>
 					</ui:repeat>
 				</h:panelGroup>
 			</h:panelGroup>
-			
+
 		</h:panelGrid>
-		<ace:pushButton value="Build my resume!" action="showResume.xhtml"></ace:pushButton>
+		<h:button value="Build my resume!" style="width:200px;" styleClass="login-button" outcome="showResume.xhtml"></h:button>
 	</h:form>
-	
+
 
 	<f:view>
 
 	</f:view>
+	
+	<div id="footer-container" class="bump">
+		<!-- START OF FOOTER -->
+		<div class="wrapper row">
+			<div class="site-hub row col-4">
+				<h3>SITE HUB</h3>
+				<ul class="row">
+					<li class="col-m-4"><a href="index.html">Home</a></li>
+					<li class="col-m-4"><a href="oops.html?special=categories">Categories</a></li>
+					<li class="col-m-4"><a href="oops.html?special=categories">Account</a></li>
+					<li class="col-m-4"><a href="contact.html">Contact</a></li>
+					<li class="col-m-4"><a href="oops.html?special=faqs">FAQs</a></li>
+					<li class="col-m-4"><a href="oops.html?special=fav">Favourites</a></li>
+				</ul>
+			</div>
+			<div class="social col-4">
+				<h3>SOCIAL HUB</h3>
+				<div class="row">
+					<ul class="col-m-8 row">
+						<li class="col-m-3 col-6"><a href="https://www.facebook.com"><img
+								src="images/social/facebook.png"
+								alt="Link to the ePass Facebook page. Like Us on Facebook!"
+								title="Like us on Facebook!" /></a></li>
+						<li class="col-m-3 col-6"><a href="https://www.twitter.com"><img
+								src="images/social/twitter.png"
+								alt="Link to the ePass Twitter feed. Follow us on Twitter!"
+								title="Follow us on Twitter!" /></a></li>
+						<li class="col-m-3 col-6"><a href="https://www.youtube.com"><img
+								src="images/social/youtube.png"
+								alt="Link to the ePass YouTube page. Subscribe to us on YouTube!"
+								title="Subscribe to us on YouTube!" /></a></li>
+						<li class="col-m-3 col-6"><a href="https://plus.google.com"><img
+								src="images/social/google-plus.png"
+								alt="Link to the ePass Google+ page." title="Like us on Google+" /></a></li>
+					</ul>
+				</div>
+			</div>
+			<h3 class="contact-phone col-4">
+				Contact us at: <a href="tel:1-514-555-5555">1-514-555-5555</a>
+			</h3>
+		</div>
+		<!-- END OF FOOTER -->
+	</div>
 
 </h:body>
 
