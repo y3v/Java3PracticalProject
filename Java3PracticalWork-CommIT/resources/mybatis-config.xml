@@ -14,6 +14,7 @@
      <typeAlias type="Model.JobPosting" alias="jobPosting"/>
      <typeAlias type="Model.JobSearch" alias="jobSearch"/>
      <typeAlias type="Model.Field" alias="field"/>
+     <typeAlias type="Model.ActionsDoubleId" alias="idid"/>
   </typeAliases>  
   <environments default="development">
     <environment id="development">

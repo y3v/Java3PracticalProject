@@ -6,8 +6,11 @@ import java.util.Iterator;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import BLL.ResumeUtils;
+import DAL.EmployeeDAO;
+import Model.Employee;
 import Model.Language;
 import Model.ProgrammingLanguage;
 
@@ -42,20 +45,31 @@ public class ResumeBean {
 	//Languages spoken
 	private String language;
 	
+	//Employee in session
+	private Employee emp;
+	
+	public ResumeBean() {
+		EmployeeBean empbean = (EmployeeBean) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("employee");
+		emp = empbean.getEmployee();
+	}
+	
 	public String addEducation() {
-		lists.getEducation().add(ResumeUtils.addEducation(designation, schoolName, degreeName, startDate, endDate));
+		lists.getEducation().add(ResumeUtils.addEducation(emp, designation, schoolName, degreeName, startDate, endDate));
+		resumeExists = true;
 		
 		return "createResume"; //I want it to stay on the same page
 	}
 	
 	public String addExperience() {
-		lists.getExperience().add(ResumeUtils.addExperience(title, description, company, location, startDateExp, endDateExp));
+		lists.getExperience().add(ResumeUtils.addExperience(emp, title, description, company, location, startDateExp, endDateExp));
+		resumeExists = true;
+		
 		return "createResume";
 	}
 	
 	public void addLanguage() {
 		if (progLanguage!=null) {		
-			lists.getProgLanguages().add(ResumeUtils.addProgLanguage(progLanguage));
+			lists.getProgLanguages().add(ResumeUtils.addProgLanguage(emp.getId(), progLanguage));
 			progLanguage=null;
 			/*for (ProgrammingLanguage lang : lists.getProgLanguages()) {
 				System.out.println(lang.getProgrammingLanguage());
@@ -65,33 +79,37 @@ public class ResumeBean {
 	
 	public void addLanguageSpoken() {
 		if (language!=null) {		
-			lists.getLanguages().add(ResumeUtils.addLanguage(language));
+			lists.getLanguages().add(ResumeUtils.addLanguage(emp.getId(),language));
 			language=null;
 		}
 	}
 	
-	public void removeLanguage(String language) {
-		System.out.println("The passed argument is: " + language);
+	public void removeLanguage(ProgrammingLanguage language) {
+		System.out.println("The passed argument is: " + language.getProgrammingLanguage());
 		Iterator<ProgrammingLanguage> iter = lists.getProgLanguages().iterator();
 
 		while (iter.hasNext()) {
 			ProgrammingLanguage str = iter.next();
 
-		    if (str.getProgrammingLanguage().equals(language))
+		    if (str.getProgrammingLanguage().equals(language.getProgrammingLanguage()))
 		        iter.remove();
 		}
+		
+		ResumeUtils.deleteProgLanguage(emp.getId(), language.getId());
 	}
 	
-	public void removeLanguageSpoken(String language) {
-		System.out.println("The passed argument is: " + language);
+	public void removeLanguageSpoken(Language language) {
+		System.out.println("The passed argument is: " + language.getLanguageName());
 		Iterator<Language> iter = lists.getLanguages().iterator();
 
 		while (iter.hasNext()) {
 			Language str = iter.next();
 
-		    if (str.getLanguageName().equals(language))
+		    if (str.getLanguageName().equals(language.getLanguageName()))
 		        iter.remove();
 		}
+		
+		ResumeUtils.deleteLanguage(emp.getId(), language);
 	}
 	
 	//Navigators related to the resume

@@ -38,7 +38,9 @@ public class EmployeeBean {
 		employee = UserUtils.getUserLogin(username, password);
 		
 		if (employee != null) {
+
 			System.out.println("employeeOptions");
+
 			return "employeeOptions";
 		}
 		else {

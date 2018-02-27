@@ -1,37 +1,43 @@
 package DAL;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import Model.Education;
 import DAL.MyBatisUtil;
 
 public class EducationDAO {
 	
-	public Education getById(Integer id) {
+	public static Education getById(Integer id) {
 		  SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();	
 		  Education education = session.selectOne("mybatis.maps.EducationMapper.selectEducation", id);
 		  session.close();
 		  return education;
 	}
 	
-	public Education getByEmployeeId(Integer id) {
+	public static List<Education> getByEmployeeId(Integer id) {
 		  SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();	
-		  Education education = session.selectOne("mybatis.maps.EducationMapper.selectEducationByEmployeeId", id);
+		  List<Education> educations = session.selectList("mybatis.maps.EducationMapper.selectEducationByEmployeeId", id);
 		  session.close();
-		  return education;
+		  return educations;
 	}
 		
-	public void insert(Education education){
+	public static Education insert(Education education){
 		  SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();	
 		  session.insert("mybatis.maps.EducationMapper.insertEducation", education);
 		  session.commit();
 		  session.close();
+		  
+		  return education;
 	}
 	
-	public void update(Education education){
+	public static Education update(Education education){
 		  SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();	
 		  session.update("mybatis.maps.EducationMapper.updateEducation", education);
 		  session.commit();
 		  session.close();
+		  
+		  return education;
 	}
 	
 	public void softDelete(Education education){

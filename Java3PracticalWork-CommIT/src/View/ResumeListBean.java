@@ -5,13 +5,16 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import Model.Education;
+import Model.Employee;
 import Model.Experience;
 import Model.Language;
 import Model.ProgrammingLanguage;
+import BLL.ResumeUtils;
 
-@ManagedBean(name="lists")
+@ManagedBean(name="lists", eager=true)
 @SessionScoped
 
 public class ResumeListBean {
@@ -20,6 +23,16 @@ public class ResumeListBean {
 	private List<ProgrammingLanguage> progLanguages = new ArrayList<ProgrammingLanguage>();
 	private List<Language> languages = new ArrayList<Language>();
 
+	public ResumeListBean() {
+		EmployeeBean empbean = (EmployeeBean) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("employee");
+		Employee emp = empbean.getEmployee();
+		
+		education = ResumeUtils.getEducations(emp);
+		experience = ResumeUtils.getExperiences(emp);
+		progLanguages = ResumeUtils.getProgrammingLanguages(emp);
+		languages = ResumeUtils.getLanguages(emp);
+	}
+	
 	public List<Education> getEducation() {
 		return education;
 	}
