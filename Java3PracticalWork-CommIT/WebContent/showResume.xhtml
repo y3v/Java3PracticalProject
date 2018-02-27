@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:ace="http://www.icefaces.org/icefaces/components">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Insert title here</title>
+</h:head>
+
+<h:body>
+	<h:form>
+		<ace:panel id="panel">
+			<h2>#{employee.firstname} #{employee.lastname}</h2>
+
+			<h3>#{employee.address}</h3>
+			<h3>#{employee.city}, #{employee.province}</h3>
+			<h3>#{employee.postalCode}</h3>
+
+			<h3>#{employee.email}</h3>
+			<h3>#{employee.phone}</h3>
+			<br></br>
+
+			<h2>Education</h2>
+			<ui:repeat var="edu" value="#{resume.lists.education}" varStatus="ed">
+				<h3>#{edu.degreeName}, #{edu.designation}</h3>
+				<h3>#{edu.schoolName}</h3>
+				<h3>#{edu.startDate} - #{edu.endDate}</h3>
+				<br></br>
+			</ui:repeat>
+
+			<h2>Experience</h2>
+			<ui:repeat var="exp" value="#{resume.lists.experience}"
+				varStatus="ex">
+				<h3>#{exp.title}</h3>
+				<h3>#{exp.company}</h3>
+				<h3>#{exp.startDate} - #{exp.endDate}</h3>
+				<h3>#{exp.location}</h3>
+				<h3>#{exp.description}</h3>
+				<br></br>
+			</ui:repeat>
+
+			<h2>Programming Languages</h2>
+			<ui:repeat var="pLang" value="#{resume.lists.progLanguages}"
+				varStatus="plang">
+				<h3>#{pLang.programmingLanguage}</h3>
+			</ui:repeat>
+			<br></br>
+
+			<h2>Languages Spoken</h2>
+			<ui:repeat var="lang" value="#{resume.lists.languages}"
+				varStatus="language">
+				<h3>#{lang.languageName}</h3>
+			</ui:repeat>
+			<br></br>
+		</ace:panel>
+		<h:commandLink id="printBothLnk">
+		<h:graphicImage id="printerImg3" value="" alt="Print or Export to PDF"/>
+			<h:outputText id="print" value="Print or Export To PDF" />
+			<ace:printer for="panel" />
+		</h:commandLink>
+	</h:form>
+
+	<f:view>
+
+	</f:view>
+</h:body>
+</html>

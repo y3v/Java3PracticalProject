@@ -4,6 +4,7 @@ import java.util.Date;
 
 import Model.Education;
 import Model.Experience;
+import Model.Language;
 import Model.ProgrammingLanguage;
 
 public class ResumeUtils {
@@ -46,6 +47,13 @@ public class ResumeUtils {
 	public static ProgrammingLanguage addProgLanguage(String progLanguage) {
 		ProgrammingLanguage lang = new ProgrammingLanguage();
 		lang.setProgrammingLanguage(progLanguage);
+		
+		return lang;
+	}
+	
+	public static Language addLanguage(String languageName) {
+		Language lang = new Language();
+		lang.setLanguageName(languageName);
 		
 		return lang;
 	}

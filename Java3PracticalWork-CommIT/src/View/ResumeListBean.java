@@ -8,6 +8,7 @@ import javax.faces.bean.SessionScoped;
 
 import Model.Education;
 import Model.Experience;
+import Model.Language;
 import Model.ProgrammingLanguage;
 
 @ManagedBean(name="lists")
@@ -17,6 +18,7 @@ public class ResumeListBean {
 	private List<Education> education = new ArrayList<Education>();	
 	private List<Experience> experience = new ArrayList<Experience>();	
 	private List<ProgrammingLanguage> progLanguages = new ArrayList<ProgrammingLanguage>();
+	private List<Language> languages = new ArrayList<Language>();
 
 	public List<Education> getEducation() {
 		return education;
@@ -40,6 +42,14 @@ public class ResumeListBean {
 
 	public void setProgLanguages(List<ProgrammingLanguage> progLanguages) {
 		this.progLanguages = progLanguages;
+	}
+
+	public List<Language> getLanguages() {
+		return languages;
+	}
+
+	public void setLanguages(List<Language> languages) {
+		this.languages = languages;
 	}
 	
 	

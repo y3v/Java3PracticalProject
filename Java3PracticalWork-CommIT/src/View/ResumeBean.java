@@ -1,12 +1,18 @@
 package View;
 
 import java.util.Date;
+import java.util.Iterator;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
+
 import BLL.ResumeUtils;
+import Model.Language;
+import Model.ProgrammingLanguage;
 
-@ManagedBean(name="resume", eager=true)
-
+@ManagedBean(name="resume")
+@ViewScoped
 
 public class ResumeBean {
 	
@@ -31,6 +37,9 @@ public class ResumeBean {
 	//Programming languages
 	private String progLanguage;
 	
+	//Languages spoken
+	private String language;
+	
 	public String addEducation() {
 		lists.getEducation().add(ResumeUtils.addEducation(designation, schoolName, degreeName, startDate, endDate));
 		
@@ -43,8 +52,44 @@ public class ResumeBean {
 	}
 	
 	public void addLanguage() {
-		lists.getProgLanguages().add(ResumeUtils.addProgLanguage(progLanguage));
-		progLanguage = "";
+		if (progLanguage!=null) {		
+			lists.getProgLanguages().add(ResumeUtils.addProgLanguage(progLanguage));
+			progLanguage=null;
+			/*for (ProgrammingLanguage lang : lists.getProgLanguages()) {
+				System.out.println(lang.getProgrammingLanguage());
+			}*/
+		}
+	}
+	
+	public void addLanguageSpoken() {
+		if (language!=null) {		
+			lists.getLanguages().add(ResumeUtils.addLanguage(language));
+			language=null;
+		}
+	}
+	
+	public void removeLanguage(String language) {
+		System.out.println("The passed argument is: " + language);
+		Iterator<ProgrammingLanguage> iter = lists.getProgLanguages().iterator();
+
+		while (iter.hasNext()) {
+			ProgrammingLanguage str = iter.next();
+
+		    if (str.getProgrammingLanguage().equals(language))
+		        iter.remove();
+		}
+	}
+	
+	public void removeLanguageSpoken(String language) {
+		System.out.println("The passed argument is: " + language);
+		Iterator<Language> iter = lists.getLanguages().iterator();
+
+		while (iter.hasNext()) {
+			Language str = iter.next();
+
+		    if (str.getLanguageName().equals(language))
+		        iter.remove();
+		}
 	}
 	
 	
@@ -155,5 +200,14 @@ public class ResumeBean {
 	public void setProgLanguage(String progLanguage) {
 		this.progLanguage = progLanguage;
 	}
+
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(String language) {
+		this.language = language;
+	}
+	
 	
 }

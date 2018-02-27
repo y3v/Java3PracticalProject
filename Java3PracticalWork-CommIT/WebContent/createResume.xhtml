@@ -62,8 +62,8 @@
 							label="Degree Type:" labelPosition="left" required="true"
 							requiredMessage="Please Enter your Degree/Diploma Type">
 							<f:selectItems value="#{autoCompleteEdu.edu}" />
-							<ace:ajax event="valueChange" render="@this" />
-							<ace:ajax event="blur" render="@this" />
+							<ace:ajax event="valueChange" render="@form" />
+							<ace:ajax event="blur" render="@form" />
 						</ace:autoCompleteEntry>
 					</h:panelGrid>
 					<h:message for="autoCompleteEdu" id="eduMsg"></h:message>
@@ -73,7 +73,7 @@
 							label="Degree Name:" labelPosition="left"
 							indicatorPosition="right" required="true"
 							requiredMessage="Please Enter your Degree/Diploma Name">
-							<ace:ajax render="@this degMsg" event="blur" />
+							<ace:ajax render="@this eduNameMsg" event="blur" />
 						</ace:textEntry>
 					</h:panelGrid>
 					<h:message for="eduNameInput" id="eduNameMsg"></h:message>
@@ -84,8 +84,8 @@
 							label="School Name:" labelPosition="left" required="true"
 							requiredMessage="Please Enter your School Name">
 							<f:selectItems value="#{autoCompleteSchools.schools}" />
-							<ace:ajax event="valueChange" render="@this" />
-							<ace:ajax event="blur" render="@this" />
+							<ace:ajax event="valueChange" render="@form" />
+							<ace:ajax event="blur" render="@form" />
 						</ace:autoCompleteEntry>
 					</h:panelGrid>
 					<h:message for="autoCompleteSchool" id="schoolMsg"></h:message>
@@ -209,16 +209,16 @@
 
 	<h:form id="restofSkills">
 		<h:panelGrid columns="1">
+		
 			<h:panelGrid columns="2">
 				<ace:autoCompleteEntry id="autoCompleteLanguages"
-				value="#{resume.progLanguage}" filterMatchMode="contains"
-				label="Programming Languages:" labelPosition="left">
-				<f:selectItems value="#{autoCompletePrLang.languages}" />
-				<ace:ajax event="valueChange" render="@all" />
-				<ace:ajax event="blur" render="@all" />
-			</ace:autoCompleteEntry>
-			<ace:pushButton id="addProgLang" value="Add"
-				actionListener="#{resume.addLanguage}" />
+					value="#{resume.progLanguage}" filterMatchMode="contains"
+					label="Programming Languages:" labelPosition="left">
+					<f:selectItems value="#{autoCompletePrLang.languages}" />
+					<ace:ajax  execute="@this" render="@form" />
+				</ace:autoCompleteEntry>
+				<ace:pushButton id="addProgLang" value="Add"
+					actionListener="#{resume.addLanguage}"/>
 			</h:panelGrid>
 
 			<h:panelGroup id="pg1" styleclass="outPane">
@@ -229,14 +229,43 @@
 						<h:panelGroup id="pg3" styleClass="iblock">
 							<h:panelGrid columns="2">			
 									<h:outputText id="nameOut" value="#{lang.programmingLanguage}" />
-									<hr />
+									<h:commandButton value="x" action="#{resume.removeLanguage(lang.programmingLanguage)}"></h:commandButton>
 							</h:panelGrid>
 						</h:panelGroup>
 					</ui:repeat>
 				</h:panelGroup>
 			</h:panelGroup>
+			
+			<h:panelGrid columns="2">
+				<ace:autoCompleteEntry id="autoCompleteLanguages2"
+					value="#{resume.language}" filterMatchMode="contains"
+					label="Languages Spoken:" labelPosition="left">
+					<f:selectItems value="#{autoCompleteLang.languages}" />
+					<ace:ajax  execute="@this" render="@form" />
+				</ace:autoCompleteEntry>
+				<ace:pushButton id="addProgLangSpoken" value="Add"
+					actionListener="#{resume.addLanguageSpoken}"/>
+			</h:panelGrid>
+
+			<h:panelGroup id="pg1lang" styleclass="outPane">
+				<h:panelGroup id="pg2lang"
+					style="vertical-align: middle">
+					<ui:repeat id="selectionsLang" value="#{resume.lists.languages}"
+						var="lang">
+						<h:panelGroup id="pg3" styleClass="iblock">
+							<h:panelGrid columns="2">			
+									<h:outputText id="nameOut" value="#{lang.languageName}" />
+									<h:commandButton value="x" action="#{resume.removeLanguageSpoken(lang.languageName)}"></h:commandButton>
+							</h:panelGrid>
+						</h:panelGroup>
+					</ui:repeat>
+				</h:panelGroup>
+			</h:panelGroup>
+			
 		</h:panelGrid>
+		<ace:pushButton value="Build my resume!" action="showResume.xhtml"></ace:pushButton>
 	</h:form>
+	
 
 	<f:view>
 
