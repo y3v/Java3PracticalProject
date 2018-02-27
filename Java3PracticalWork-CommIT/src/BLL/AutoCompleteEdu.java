@@ -47,6 +47,7 @@ public class AutoCompleteEdu
     	edu.add(new SelectItem("MPhil"));
     	edu.add(new SelectItem("PHD"));
     	edu.add(new SelectItem("MD"));
+    	edu.add(new SelectItem("AEC"));
     }
 
 }

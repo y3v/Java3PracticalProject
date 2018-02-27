@@ -1,7 +1,6 @@
 package BLL;
 
 import Model.Employee;
-import Model.User;
 
 public class UserUtils {
 	

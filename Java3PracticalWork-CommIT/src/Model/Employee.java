@@ -20,8 +20,7 @@ public class Employee {
 	private String email;
 	private String phoneNumber;
 	private String socialMediaUrl;
-	private List<Education> educations;
-	private List<Experience> experiences;
+	
 	
 	public int getId() {
 		return id;
