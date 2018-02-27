@@ -58,6 +58,12 @@ VALUES
     ('ASP.NET MVC', 2),
     ('Spring', 3);
 
+use javaiii;
+SELECT * FROM education;
+
+
+-- EDU 1
+
 
 -- EXP 1
 INSERT INTO experience (employee_id, company, title, description, start_date, end_date)
@@ -100,36 +106,11 @@ VALUES (3, 3);
 INSERT INTO experience_field (experience_id, field_id)
 VALUES (3, 3);
 
-/* Select all languages for an experience */
-SELECT iso_code as isoCode, language_name
-    FROM language lang
-    JOIN experience_language exlang ON exlang.language_code = lang.iso_code
-    JOIN experience ex ON ex.id = exlang.experience_id AND ex.id = 1;
-    
-/* Select all programming languages for an experience */
-SELECT plang.id, programming_language as programmingLanguage
-    FROM programming_language plang
-    JOIN experience_programming_language explang ON explang.programming_language_id = plang.id
-    JOIN experience ex ON ex.id = explang.experience_id AND ex.id = 1;
-    
-/* Select all fields for an experience */
-SELECT f.id, field
-    FROM field f
-    JOIN experience_field exf ON exf.field_id = f.id
-    JOIN experience ex ON ex.id = exf.experience_id AND ex.id = 1;
-    
-use javaiii;
-SELECT 
-	plang.id, programming_language
-FROM 
-	programming_language plang
-JOIN 
-	experience_programming_language explang 
-	ON 
-		explang.programming_language_id = plang.id
-JOIN 
-	experience ex 
-	ON 
-		ex.id = explang.experience_id 
-	AND 
-		ex.id = 3;
+
+-- PROGLANG 1
+INSERT INTO employee_programming_language (employee_id, programming_language_id)
+VALUES (1, 2);
+
+-- LANG 1
+INSERT INTO employee_language (employee_id, iso_code)
+VALUES (1, 'fra');

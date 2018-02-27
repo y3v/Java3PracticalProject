@@ -109,6 +109,26 @@ UNIQUE (id)
 ); /*field, programming languages, language*/
 
 
+create table employee_programming_language (
+id int AUTO_INCREMENT not null,
+employee_id int not null,
+programming_language_id int not null,
+FOREIGN KEY (employee_id) REFERENCES employee (id),
+FOREIGN KEY (programming_language_id) REFERENCES programming_language (id),
+PRIMARY KEY (id),
+UNIQUE (id)
+);
+
+create table employee_language (
+id int AUTO_INCREMENT not null,
+employee_id int not null,
+iso_code nvarchar(3) not null,
+FOREIGN KEY (employee_id) REFERENCES employee (id),
+FOREIGN KEY (iso_code) REFERENCES language (iso_code),
+PRIMARY KEY (id),
+UNIQUE (id)
+);
+
 create table experience_language (
 id int AUTO_INCREMENT not null,
 experience_id int not null,
@@ -240,6 +260,8 @@ drop table job_posting;
 drop table experience_field;
 drop table experience_programming_language;
 drop table experience_language;
+drop table employee_language;
+drop table employee_programming_language;
 drop table experience;
 drop table education;
 drop table interest;
