@@ -249,16 +249,10 @@
 					<ui:repeat id="selections" value="#{resume.lists.progLanguages}"
 						var="lang">
 						<h:panelGroup id="pg3" styleClass="iblock">
-<<<<<<< HEAD
-							<h:panelGrid columns="2">
-								<h:outputText id="nameOut" value="#{lang.programmingLanguage}" />
-								<h:commandButton value="x"
-									action="#{resume.removeLanguage(lang.programmingLanguage)}"></h:commandButton>
-=======
 							<h:panelGrid columns="2">			
 									<h:outputText id="nameOut" value="#{lang.programmingLanguage}" />
 									<h:commandButton value="x" action="#{resume.removeLanguage(lang)}"></h:commandButton>
->>>>>>> refs/remotes/origin/master
+
 							</h:panelGrid>
 						</h:panelGroup>
 					</ui:repeat>
@@ -281,16 +275,9 @@
 					<ui:repeat id="selectionsLang" value="#{resume.lists.languages}"
 						var="lang">
 						<h:panelGroup id="pg3" styleClass="iblock">
-<<<<<<< HEAD
-							<h:panelGrid columns="2">
-								<h:outputText id="nameOut" value="#{lang.languageName}" />
-								<h:commandButton value="x"
-									action="#{resume.removeLanguageSpoken(lang.languageName)}"></h:commandButton>
-=======
 							<h:panelGrid columns="2">			
 									<h:outputText id="nameOut" value="#{lang.languageName}" />
 									<h:commandButton value="x" action="#{resume.removeLanguageSpoken(lang)}"></h:commandButton>
->>>>>>> refs/remotes/origin/master
 							</h:panelGrid>
 						</h:panelGroup>
 					</ui:repeat>
