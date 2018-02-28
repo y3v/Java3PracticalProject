@@ -112,7 +112,7 @@ public class EmployeeBean {
 	public String createProfile() {
 		employee = UserUtils.updateProfile(employee);
 		
-		return ("employeeOptions");
+		return ("employeeOptions?faces-redirect=true");
 	}
 	
 	public String doesProfileExist() { //NEW METHOD
