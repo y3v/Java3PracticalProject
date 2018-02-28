@@ -57,7 +57,7 @@ public class ResumeBean {
 		lists.getEducation().add(ResumeUtils.addEducation(emp, designation, schoolName, degreeName, startDate, endDate));
 		resumeExists = true;
 		
-		return "createResume"; //I want it to stay on the same page
+		return "createResume";
 	}
 	
 	public String addExperience() {

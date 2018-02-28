@@ -40,7 +40,7 @@
 
 		<div>
 			<h:link outcome="#{employee.doesProfileExist()}"
-				styleClass="options-box" value="Create Profile"
+				styleClass="options-box" value="Create/Edit Profile"
 				rendered="#{!employee.profileExists}">
 			</h:link>
 		</div>
@@ -59,13 +59,8 @@
 		</div>
 
 		<div>
-			<h:link styleClass="options-box" value="Create New Resume"
+			<h:link styleClass="options-box" value="Create/Update Resume"
 				outcome="#{resume.createResume()}"></h:link>
-		</div>
-
-		<div>
-			<h:link styleClass="options-box" value="View Existing Resumes"
-				outcome="#{resume.viewResumes()}" rendered="#{!resume.resumeExists}"></h:link>
 		</div>
 
 

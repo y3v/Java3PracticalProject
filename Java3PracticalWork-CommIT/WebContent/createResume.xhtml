@@ -56,7 +56,6 @@
 		<h1 style="text-align: center">Create your Resume</h1>
 		<h:form id="resume-form">
 			<ace:dataTable id="eduTable"
-				rendered="#{!resume.lists.education.isEmpty()}"
 				value="#{lists.education}" var="edu" paginator="true"
 				paginatorPosition="bottom" rows="10">
 				<ace:column id="typeCell" headerText="Degree Type">
@@ -69,10 +68,14 @@
 					<h:outputText id="schoolCell" value="#{edu.schoolName}" />
 				</ace:column>
 				<ace:column id="startDateCell" headerText="Start Date">
-					<h:outputText id="startDateText" value="#{edu.startDate}" />
+					<h:outputText value="#{edu.startDate}" id="startDateText">
+						<f:convertDateTime pattern="MMM dd yyyy" />
+					</h:outputText>
 				</ace:column>
 				<ace:column id="endDateCell" headerText="End Date">
-					<h:outputText id="endDateText" value="#{edu.endDate}" />
+					<h:outputText value="#{edu.endDate}" id="endDateText">
+						<f:convertDateTime pattern="MMM dd yyyy" />
+					</h:outputText>
 				</ace:column>
 			</ace:dataTable>
 
@@ -85,8 +88,8 @@
 							label="Degree Type:" labelPosition="left" required="true"
 							requiredMessage="Please Enter your Degree/Diploma Type">
 							<f:selectItems value="#{autoCompleteEdu.edu}" />
-							<ace:ajax event="valueChange" render="@form" />
-							<ace:ajax event="blur" render="@form" />
+							<ace:ajax event="valueChange" render="@all" />
+							<ace:ajax event="blur" render="@all" />
 						</ace:autoCompleteEntry>
 					</h:panelGrid>
 					<h:message for="autoCompleteEdu" id="eduMsg"></h:message>
@@ -107,8 +110,8 @@
 							label="School Name:" labelPosition="left" required="true"
 							requiredMessage="Please Enter your School Name">
 							<f:selectItems value="#{autoCompleteSchools.schools}" />
-							<ace:ajax event="valueChange" render="@form" />
-							<ace:ajax event="blur" render="@form" />
+							<ace:ajax event="valueChange" render="@all" />
+							<ace:ajax event="blur" render="@all" />
 						</ace:autoCompleteEntry>
 					</h:panelGrid>
 					<h:message for="autoCompleteSchool" id="schoolMsg"></h:message>
@@ -154,10 +157,14 @@
 				<h:outputText id="locationCell" value="#{exp.location}" />
 			</ace:column>
 			<ace:column id="startDateCellExp" headerText="Start Date">
-				<h:outputText id="startDateTextExp" value="#{exp.startDate}" />
+				<h:outputText value="#{exp.startDate}" id="startDateTextExp">
+						<f:convertDateTime pattern="MMM dd yyyy" />
+				</h:outputText>
 			</ace:column>
 			<ace:column id="endDateCellExp" headerText="End Date">
-				<h:outputText id="endDateTextExp" value="#{exp.endDate}" />
+				<h:outputText value="#{exp.endDate}" id="endDateTextExp">
+						<f:convertDateTime pattern="MMM dd yyyy" />
+				</h:outputText>
 			</ace:column>
 		</ace:dataTable>
 

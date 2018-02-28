@@ -50,7 +50,15 @@
 			<ui:repeat var="edu" value="#{resume.lists.education}" varStatus="ed">
 				<h3>#{edu.degreeName}, #{edu.designation}</h3>
 				<h3>#{edu.schoolName}</h3>
-				<h3>#{edu.startDate} - #{edu.endDate}</h3>
+				<h3>
+					<h:outputText value="#{edu.endDate}">
+						<f:convertDateTime pattern="MMM dd yyyy" />
+					</h:outputText>
+					-
+					<h:outputText value="#{edu.startDate}">
+						<f:convertDateTime pattern="MMM dd yyyy" />
+					</h:outputText>
+				</h3>
 				<br></br>
 			</ui:repeat>
 
@@ -59,7 +67,15 @@
 				varStatus="ex">
 				<h3>#{exp.title}</h3>
 				<h3>#{exp.company}</h3>
-				<h3>#{exp.startDate} - #{exp.endDate}</h3>
+				<h3>
+					<h:outputText value="#{exp.endDate}">
+						<f:convertDateTime pattern="MMM dd yyyy" />
+					</h:outputText>
+					-
+					<h:outputText value="#{exp.startDate}">
+						<f:convertDateTime pattern="MMM dd yyyy" />
+					</h:outputText>
+				</h3>
 				<h3>#{exp.location}</h3>
 				<h3>#{exp.description}</h3>
 				<br></br>
@@ -79,18 +95,19 @@
 			</ui:repeat>
 			<br></br>
 		</ace:panel>
-		<h:commandLink id="printBothLnk">
-			<h:graphicImage id="printerImg3" value=""
-				alt="Print or Export to PDF" />
+		<h:commandLink id="printBothLnk" styleClass="login-button" style="width:200px;">
 			<h:outputText id="print" value="Print or Export To PDF" />
 			<ace:printer for="panel" />
+		</h:commandLink>
+		
+		<h:commandLink id="backtoPortal" styleClass="login-button" style="width:200px;" value="Back to portal" action="employeeOptions.xhtml?faces-redirect=true">
 		</h:commandLink>
 	</h:form>
 
 	<f:view>
 
 	</f:view>
-	
+
 	<div id="footer-container" class="bump">
 		<!-- START OF FOOTER -->
 		<div class="wrapper row">
@@ -133,6 +150,6 @@
 		</div>
 		<!-- END OF FOOTER -->
 	</div>
-	
+
 </h:body>
 </html>

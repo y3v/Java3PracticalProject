@@ -4,32 +4,98 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
-<title>Insert title here</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="style/main.css" />
 </h:head>
 
 <h:body>
 
-<h:form>
-<h2>Username: #{employee.username}</h2>
-<h2>Password: #{employee.password}</h2>
-<h2>First name: #{employee.firstname}</h2>
-<h2>Last name: #{employee.lastname}</h2>
-<h2>Email: #{employee.email}</h2>
-<h2>Address: #{employee.address}</h2>
-<h2>City: #{employee.city}</h2>
-<h2>Province: #{employee.province}</h2>
-<h2>Phone: #{employee.phone}</h2>
-<h2>Postal Code: #{employee.postalCode}</h2>
+	<div id="header-container">
+		<!-- START OF HEADER -->
+		<div class="row wrapper">
+			<a class="col-m-2" id="logo" href="homepage.jsf"><img
+				src="images/commIT.png" alt="Image of commIT Logo" /></a>
+			<div class="col-m-10 col-8" id="nav">
+				<ul>
+					<h:form><h:commandButton  action="#{nav.invalidateSession}"
+						styleClass="menu-link col-m-3" style="float:left;" value="LOGOUT">
+					</h:commandButton></h:form>
+					<h:link outcome="#{nav.getAccount()}"
+						styleClass="menu-link col-m-3" style="float:left;" value="ACCOUNT">
+					</h:link>
+					<li class="col-m-3"><a href="oops.html?special=account">WHY
+							COMMIT?</a></li>
+					<li class="col-m-3"><a href="contact.html">CONTACT</a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- END OF HEADER -->
+	</div>
 
-<h:commandButton value="Build Resume" action="createResume.xhtml"></h:commandButton>
-</h:form>
+	<h:form>
+		<h2>Username: #{employee.employee.username}</h2>
+		<h2>Password: #{employee.employee.password}</h2>
+		<h2>First name: #{employee.employee.firstName}</h2>
+		<h2>Last name: #{employee.employee.lastName}</h2>
+		<h2>Email: #{employee.employee.email}</h2>
+		<h2>Address: #{employee.employee.address}</h2>
+		<h2>City: #{employee.employee.city}</h2>
+		<h2>Province: #{employee.employee.province}</h2>
+		<h2>Phone: #{employee.employee.phoneNumber}</h2>
+		<h2>Postal Code: #{employee.employee.postalCode}</h2>
+
+		<h:commandButton value="Build Resume" action="createResume.xhtml"></h:commandButton>
+	</h:form>
+	
+	<div id="footer-container">
+		<!-- START OF FOOTER -->
+		<div class="wrapper row">
+			<div class="site-hub row col-4">
+				<h3>SITE HUB</h3>
+				<ul class="row">
+					<li class="col-m-4"><a href="index.html">Home</a></li>
+					<li class="col-m-4"><a href="oops.html?special=categories">Categories</a></li>
+					<li class="col-m-4"><a href="oops.html?special=categories">Account</a></li>
+					<li class="col-m-4"><a href="contact.html">Contact</a></li>
+					<li class="col-m-4"><a href="oops.html?special=faqs">FAQs</a></li>
+					<li class="col-m-4"><a href="oops.html?special=fav">Favourites</a></li>
+				</ul>
+			</div>
+			<div class="social col-4">
+				<h3>SOCIAL HUB</h3>
+				<div class="row">
+					<ul class="col-m-8 row">
+						<li class="col-m-3 col-6"><a href="https://www.facebook.com"><img
+								src="images/social/facebook.png"
+								alt="Link to the ePass Facebook page. Like Us on Facebook!"
+								title="Like us on Facebook!" /></a></li>
+						<li class="col-m-3 col-6"><a href="https://www.twitter.com"><img
+								src="images/social/twitter.png"
+								alt="Link to the ePass Twitter feed. Follow us on Twitter!"
+								title="Follow us on Twitter!" /></a></li>
+						<li class="col-m-3 col-6"><a href="https://www.youtube.com"><img
+								src="images/social/youtube.png"
+								alt="Link to the ePass YouTube page. Subscribe to us on YouTube!"
+								title="Subscribe to us on YouTube!" /></a></li>
+						<li class="col-m-3 col-6"><a href="https://plus.google.com"><img
+								src="images/social/google-plus.png"
+								alt="Link to the ePass Google+ page." title="Like us on Google+" /></a></li>
+					</ul>
+				</div>
+			</div>
+			<h3 class="contact-phone col-4">
+				Contact us at: <a href="tel:1-514-555-5555">1-514-555-5555</a>
+			</h3>
+		</div>
+		<!-- END OF FOOTER -->
+	</div>
 
 
 
-<f:view>
+	<f:view>
 
-</f:view>
+	</f:view>
 
 </h:body>
 
