@@ -99,7 +99,7 @@ public class EmployeeBean {
 	
 	public String registerNav() {
 		//Create initial registration
-		employee = UserUtils.createEmployee(username, password, firstname, lastname, email);
+		// employee = UserUtils.createEmployee(username, password, firstname, lastname, email);
 		System.out.println("Username:" + employee.getUsername());
 		System.out.println("Email:" + employee.getEmail());
 		System.out.println("Password:" + employee.getPassword());
@@ -110,7 +110,7 @@ public class EmployeeBean {
 	}
 	
 	public String createProfile() {
-		employee = UserUtils.fillProfile(employee, city, province, phone, postalCode, address);
+		employee = UserUtils.updateProfile(employee);
 		
 		return ("employeeOptions");
 	}

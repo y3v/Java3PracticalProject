@@ -41,23 +41,7 @@ public class UserUtils {
 		return EmployeeDAO.insert(emp);
 	}
 	
-	public static Employee fillProfile(Employee employee, String city, String province, String phone, String postalCode, String address){
-		if (city != null) {
-			employee.setCity(city);
-		}
-		if (province != null) {
-			employee.setProvince(province);
-		}
-		if (phone != null) {
-			employee.setPhoneNumber(phone);
-		}
-		if (postalCode != null) {
-			employee.setPostalCode(postalCode);
-		}
-		if (address != null) {
-			employee.setAddress(address);
-		}
-
+	public static Employee updateProfile(Employee employee){
 		return EmployeeDAO.update(employee);
 	}
 }	
