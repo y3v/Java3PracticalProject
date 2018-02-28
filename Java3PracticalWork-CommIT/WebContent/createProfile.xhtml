@@ -42,7 +42,7 @@
 			<h:panelGrid id="profileGrid" columns="1" width="100%" styleClass="">
 
 				<h:panelGrid columns="2">
-					<ace:textEntry id="addressInput" value="#{employee.address}" width="200"
+					<ace:textEntry id="addressInput" value="#{employee.employee.address}" width="200"
 						label="Address" labelPosition="left" indicatorPosition="right">
 					</ace:textEntry>
 
@@ -63,7 +63,7 @@
 				<br></br>
 
 				<h:panelGrid columns="2">
-					<ace:autoCompleteEntry id="autoComplete" value="#{employee.city}" width="230"
+					<ace:autoCompleteEntry id="autoComplete" value="#{employee.employee.city}" width="230"
 						filterMatchMode="" label="City:" labelPosition="left">
 						<f:selectItems value="#{autoCompleteCities.cities}" />
 						<ace:ajax event="valueChange" render="@all" />
@@ -87,7 +87,7 @@
 				<br></br>
 
 				<h:panelGrid columns="2">
-					<ace:selectMenu id="selectProvince" value="#{employee.province}" width="230"
+					<ace:selectMenu id="selectProvince" value="#{employee.employee.province}" width="230"
 						label="Select Province: " labelPosition="left">
 						<f:selectItems value="#{options.provinces}" />
 						<ace:ajax execute="@this" render="@all" />
@@ -111,7 +111,7 @@
 
 				<h:panelGrid columns="2">
 					<ace:maskedEntry id="postalCodeInput" label="Postal Code:" width="200"
-						labelPosition="left" value="#{employee.postalCode}" mask="a9a 9a9">
+						labelPosition="left" value="#{employee.employee.postalCode}" mask="a9a 9a9">
 						<ace:ajax execute="@this" render="postalCodeInput" />
 					</ace:maskedEntry>
 					<h:graphicImage value="images/qm.png" alt="help" id="help2"
@@ -132,7 +132,7 @@
 
 				<h:panelGrid columns="2">
 					<ace:maskedEntry id="phoneInput" label="Phone Number:" width="200"
-						labelPosition="left" value="#{employee.phone}"
+						labelPosition="left" value="#{employee.employee.phoneNumber}"
 						mask="(999) 999-9999">
 						<ace:ajax execute="@this" render="phoneInput" />
 					</ace:maskedEntry>
@@ -153,7 +153,7 @@
 				</h:panelGrid>
 			</h:panelGrid>
 		</ace:panel>
-		<h:button value="Submit" action="employeeOptions.xhtml" styleClass="login-button"></h:button>
+		<h:button value="Submit" action="employee.createProfile" styleClass="login-button"></h:button>
 		<br></br>
 		<br></br>
 	</h:form>
