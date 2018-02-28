@@ -35,6 +35,7 @@ public class EmployeeBean {
 	private boolean profileExists = false; //NEW PROPERTY -- set this to true if the profile exists
 	
 	public String validateLogin() {
+		System.out.println("Validate Login Method");
 		employee = UserUtils.getUserLogin(username, password);
 		//employee = UserUtils.createTestUser();
 		
@@ -46,6 +47,7 @@ public class EmployeeBean {
 		}
 		else {
 			FacesContext context = FacesContext.getCurrentInstance();
+			System.out.println("Login Error");
 			context.addMessage("login-form:usernameInput", new FacesMessage("Invalid Username or Password"));
 			return null;
 		}
