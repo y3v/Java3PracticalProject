@@ -66,7 +66,7 @@
 			address = #{address},
 			city = #{city},
 			province = #{province},
-			postal_code = #{postalCode}
+			postal_code = #{postalCode},
 			email = #{email},
 			phone_number = #{phoneNumber},
 			social_media_url = #{socialMediaUrl}
