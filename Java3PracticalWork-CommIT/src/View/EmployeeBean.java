@@ -43,7 +43,7 @@ public class EmployeeBean {
 
 			System.out.println("Redirecting to: employeeOptions");
 
-			return "employeeOptions";
+			return "employeeOptions?faces-redirect=true";
 		}
 		else {
 			FacesContext context = FacesContext.getCurrentInstance();
@@ -99,14 +99,14 @@ public class EmployeeBean {
 	
 	public String registerNav() {
 		//Create initial registration
-		// employee = UserUtils.createEmployee(username, password, firstname, lastname, email);
+		employee = UserUtils.createEmployee(username, password, firstname, lastname, email);
 		System.out.println("Username:" + employee.getUsername());
 		System.out.println("Email:" + employee.getEmail());
 		System.out.println("Password:" + employee.getPassword());
 		System.out.println("Last name:" + employee.getLastName());
 		System.out.println("First Name:" + employee.getFirstName());
 		
-		return ("employeeOptions");
+		return ("employeeOptions?faces-redirect=true");
 	}
 	
 	public String createProfile() {
