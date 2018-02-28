@@ -1,5 +1,6 @@
 package Model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -46,14 +47,14 @@ public class Experience {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Date getStartDate() {
-		return startDate;
+	public String getStartDate() {
+		return new SimpleDateFormat("MMM dd,yyyy").format(startDate);
 	}
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
-	public Date getEndDate() {
-		return endDate;
+	public String getEndDate() {
+		return new SimpleDateFormat("MMM dd,yyyy").format(endDate);
 	}
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;

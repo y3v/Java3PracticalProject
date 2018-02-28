@@ -24,6 +24,10 @@ public class UserUtils {
 		
 		emp = EmployeeDAO.getLogin(emp);
 		
+		System.out.println("Address" +emp.getAddress());
+		System.out.println("City" +emp.getCity());
+		System.out.println("Email" +emp.getEmail());
+		
 		if (emp != null) 
 			return emp;
 		else

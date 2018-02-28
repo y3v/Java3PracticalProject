@@ -36,14 +36,14 @@
 
 	<h:form class="bump showResume">
 		<ace:panel id="panel">
-			<h2>#{employee.firstname} #{employee.lastname}</h2>
+			<h2>#{employee.employee.firstName} #{employee.employee.lastName}</h2>
 
-			<h3>#{employee.address}</h3>
-			<h3>#{employee.city}, #{employee.province}</h3>
+			<h3>#{employee.employee.address}</h3>
+			<h3>#{employee.employee.city}, #{employee.employee.province}</h3>
 			<h3>#{employee.postalCode}</h3>
 
-			<h3>#{employee.email}</h3>
-			<h3>#{employee.phone}</h3>
+			<h3>#{employee.employee.email}</h3>
+			<h3>#{employee.employee.phoneNumber}</h3>
 			<br></br>
 
 			<h2>Education</h2>

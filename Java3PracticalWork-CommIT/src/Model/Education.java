@@ -1,5 +1,6 @@
 package Model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Education {
@@ -41,14 +42,14 @@ public class Education {
 	public void setSchoolName(String schoolName) {
 		this.schoolName = schoolName;
 	}
-	public Date getStartDate() {
-		return startDate;
+	public String getStartDate() {
+		return new SimpleDateFormat("MMM dd,yyyy").format(startDate);
 	}
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
-	public Date getEndDate() {
-		return endDate;
+	public String getEndDate() {
+		return new SimpleDateFormat("MMM dd,yyyy").format(endDate);
 	}
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
