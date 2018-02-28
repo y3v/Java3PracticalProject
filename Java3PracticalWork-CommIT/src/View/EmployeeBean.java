@@ -36,10 +36,11 @@ public class EmployeeBean {
 	
 	public String validateLogin() {
 		employee = UserUtils.getUserLogin(username, password);
+		//employee = UserUtils.createTestUser();
 		
 		if (employee != null) {
 
-			System.out.println("employeeOptions");
+			System.out.println("Redirecting to: employeeOptions");
 
 			return "employeeOptions";
 		}
